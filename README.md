@@ -4,10 +4,9 @@
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/3actJS/yelp_images
+  - https://github.com/teamName/yelp_reservations
+  - https://github.com/teamName/yelp_popular-dishes
 
 ## Table of Contents
 
