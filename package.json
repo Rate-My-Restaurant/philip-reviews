@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "yelp-reviews",
   "version": "",
   "description": "",
   "author": "",
@@ -8,13 +8,16 @@
     "node": ">=6.13.0"
   },
   "scripts": {
+    "server-dev": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
+    "start": "live-server",
     "seeding": "mysql -u root -p < schema.sql"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "jquery": "^3.5.0",
+    "mongodb": "^3.5.7",
     "mongoose": "^5.9.11",
     "mysql": "^2.18.1",
     "react": "^16.13.1",
