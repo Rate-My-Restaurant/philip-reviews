@@ -9,7 +9,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser());
 
 app.get('/reviews', (req, res) => {
-  res.send('Hello World!');
+  console.log('reqbody', req.body);
+  db.allReviews((data, error) => {
+    if (error) {
+      console.log(error);
+      res.status(404).send('error GET request on reviews');
+    } else {
+      res.status(200).send(data);
+    }
+  })
 });
 
 app.listen(port, () => {

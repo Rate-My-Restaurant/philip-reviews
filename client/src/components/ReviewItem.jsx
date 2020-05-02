@@ -5,4 +5,9 @@ import ReviewItem from './ReviewItem.jsx';
 
 
 
-export default ReviewList;
+
+
+
+
+
+export default ReviewItem;
