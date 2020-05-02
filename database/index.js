@@ -9,4 +9,3 @@ connection.connect((error) => {
     console.log ('mySQL is connected!');
   }
 });
-

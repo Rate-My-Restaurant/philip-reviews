@@ -11,7 +11,7 @@
     "server-dev": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
     "start": "live-server",
-    "seeding": "mysql -u root -p < schema.sql"
+    "seeding": "mysql -u student -p < schema.sql"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
