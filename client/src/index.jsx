@@ -9,10 +9,11 @@ class App extends React.Component {
     super(props);
     this.state = {};
   }
+
   componentDidMount() {
     $.ajax ({
       type: 'GET',
-      url: '/reviews',
+      url: '/pictures',
       success: (res) => {
         console.log('GET reviews request successful: ', res);
       },
@@ -25,10 +26,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <img src="https://fec-yelpreviews.s3-us-west-1.amazonaws.com/reviewpics/kimchi_pic1.jpg"/>
       </div>
     )
   }
 }
 
-ReactDOM.render(<App/>, document.getElementID('app'));
-
+ReactDOM.render(<App/>, document.getElementById('app'));

@@ -1,13 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReviewItem from './ReviewItem.jsx';
 
-
-
-
-
-
-
-
-
+const ReviewItem = (props) => (
+  <div>Hi World</div>
+)
 export default ReviewItem;
