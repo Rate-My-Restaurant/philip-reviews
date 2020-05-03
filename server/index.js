@@ -9,7 +9,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser());
 
 app.get('/reviews', (req, res) => {
-  console.log('reqbody', req.body);
   db.allReviews((data, error) => {
     if (error) {
       console.log(error);
