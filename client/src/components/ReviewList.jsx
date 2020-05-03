@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ReviewItem from './ReviewItem.jsx';
 
 const ReviewList = (props) => (
-  <div>Hi World</div>
+  <div>List of Reviews</div>
 )
 
 export default ReviewList;

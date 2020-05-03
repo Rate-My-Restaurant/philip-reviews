@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const SearchReview = (props) => (
-  <div>Hi World</div>
+  <div>Search Reviews</div>
 )
 
 export default SearchReview;
