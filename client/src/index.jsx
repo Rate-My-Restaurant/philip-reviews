@@ -7,15 +7,18 @@ import SearchReview from './components/SearchReview.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      reviews: [],
+    };
   }
 
   componentDidMount() {
     $.ajax ({
       type: 'GET',
-      url: '/pictures',
+      url: '/reviews',
       success: (res) => {
         console.log('GET reviews request successful: ', res);
+        this.setState({reviews: res})
       },
       error: (err) => {
         console.log('GET reviews request not successful: ', err)
@@ -26,7 +29,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <img src="https://fec-yelpreviews.s3-us-west-1.amazonaws.com/reviewpics/kimchi_pic1.jpg"/>
+        <h4>Recommended Reviews</h4>
+        <ReviewList allReviews={this.state.reviews}/>
+        <SearchReview/>
       </div>
     )
   }
