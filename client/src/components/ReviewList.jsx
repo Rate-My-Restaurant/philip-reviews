@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ReviewItem from './ReviewItem.jsx';
 
 const ReviewList = (props) => {
-  console.log('reviewlistProps', props)
+  console.log('reviewlistProps', props);
   return (
   <div>
     <h2>All Reviews</h2>

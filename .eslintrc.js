@@ -1,3 +1,8 @@
 module.exports = {
-  "extends": "airbnb-base"
+  parser: 'babel-eslint',
+  extends: ['airbnb-base','plugin:jest/recommended'],
+  env: {
+      'jest/globals': true
+  },
+  plugins: ['jest'],
 };
