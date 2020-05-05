@@ -6,7 +6,7 @@ const ReviewList = (props) => {
   console.log('reviewlistProps', props);
   return (
   <div>
-    <h2>All Reviews</h2>
+    <h5>All Reviews</h5>
     There are {props.allReviews.length} reviews.
     <ol>
     {

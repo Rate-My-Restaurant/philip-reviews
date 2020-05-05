@@ -2,10 +2,19 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import ReviewList from '../components/ReviewList';
+import Mockresponse from '../mockresponse.js';
 
-describe('Reviewlist test', () => {
-  it('should render all reviewItem components', () => {
-    const wrapper = shallow(<ReviewList/>);
-    expect(wrapper).toMatchSnapshot();
+function setup() {
+  const props = {
+    allReviews : Mockresponse
+  };
+  const wrapper = shallow(<ReviewList/>);
+  return {wrapper, props};
+}
+
+describe('Reviewlist Test Suite', () => {
+  it('should render all reviews', () => {
+    const { wrapper } = setup();
+    expect(wrapper).toExist();
   });
 });
