@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import Pictures from './Pictures.jsx';
 
 // const Button = styled.button`
 //   cursor: pointer;
@@ -27,10 +28,15 @@ const ReviewItem = (props) => (
       <span>{props.reviewItem.uploadDate}</span>
     </div>
     <div>
-      <span></span>
+      <span>{props.reviewItem.pictures.length} photos</span>
       <span>{props.reviewItem.restaurantVisit} check-in</span>
     </div>
     <div>{props.reviewItem.content}</div>
+    {
+      props.reviewItem.pictures.map(picture => {
+        return <Pictures picture={picture} />
+      })
+    }
     <div>See all photos from {props.reviewItem.userName} for {props.reviewItem.restaurantName}</div>
     <div>
       <span>Useful {props.reviewItem.emojiUseful}</span>

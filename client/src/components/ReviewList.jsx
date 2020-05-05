@@ -11,6 +11,7 @@ const ReviewList = (props) => {
     <ol>
     {
       props.allReviews.map((item) => {
+        console.log(item);
         return <li><ReviewItem reviewItem={item}/></li>
       })
     }
