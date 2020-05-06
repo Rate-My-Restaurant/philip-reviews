@@ -27,8 +27,8 @@ class App extends React.Component {
     return (
       <div>
         <h4>Recommended Reviews</h4>
-        <ReviewList allReviews={this.state.reviews}/>
         <SearchReview/>
+        <ReviewList allReviews={this.state.reviews}/>
       </div>
     )
   }

@@ -6,8 +6,6 @@ const ReviewList = (props) => {
   console.log('reviewlistProps', props);
   return (
   <div>
-    <h5>All Reviews</h5>
-    There are {props.allReviews.length} reviews.
     <ol>
     {
       props.allReviews.map((item) => {
