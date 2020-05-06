@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
+import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
 import SearchReview from './SearchReview.jsx';
 
@@ -13,17 +13,14 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    $.ajax ({
-      type: 'GET',
-      url: '/reviews',
-      success: (res) => {
-        console.log('GET reviews request successful: ', res);
-        this.setState({reviews: res});
-      },
-      error: (err) => {
-        console.log('GET reviews request not successful: ', err);
-      },
-    });
+    axios.get('/reviews')
+      .then(res => {
+        console.log('GET review request successful:', res.data)
+        this.setState({reviews: res.data});
+      })
+      .catch(error => {
+        console.log('GET review request not successful:', error);
+      })
   }
 
   render() {
