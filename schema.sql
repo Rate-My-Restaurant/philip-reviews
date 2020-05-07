@@ -33,6 +33,7 @@ CREATE TABLE reviews (
   emojiFunny INT,
   emojiCool INT,
   reply VARCHAR(3000),
+  replyDate DATE,
   userID INT,
   CONSTRAINT fk_reviews_restaurant FOREIGN KEY (restaurantID) REFERENCES restaurants(id),
   CONSTRAINT fk_reviews_user FOREIGN KEY (userID) REFERENCES users(id)
@@ -68,9 +69,9 @@ INSERT INTO Restaurants(restaurantName) VALUES ('Taste of Korea');
 INSERT INTO Restaurants(restaurantName) VALUES ('Taste of India');
 INSERT INTO Restaurants(restaurantName) VALUES ('Taste of Vietnam');
 
-INSERT INTO Reviews (restaurantID, stars, uploadDate, restaurantVisit, content, emojiUseful, emojiFunny, emojiCool, reply, userID) VALUES (1, 5, "2020-04-02", 1, "It was delicious!", 1, Null, Null, "I'm glad you enjoyed it!", 1);
+INSERT INTO Reviews (restaurantID, stars, uploadDate, restaurantVisit, content, emojiUseful, emojiFunny, emojiCool, reply, userID) VALUES (1, 5, "2020-04-02", 1, "It was delicious!", 1, Null, Null, "I'm glad you enjoyed it!", "2020-04-03", 1);
 INSERT INTO Reviews (restaurantID, stars, uploadDate, restaurantVisit, content, emojiUseful, emojiFunny, emojiCool, reply, userID) VALUES (1, 2, "2020-03-23", NULL, "Wasn't great", 1, 1, Null, NULL, 2);
-INSERT INTO Reviews (restaurantID, stars, uploadDate, restaurantVisit, content, emojiUseful, emojiFunny, emojiCool, reply, userID) VALUES (2, 4, "2020-02-12", 2, "Love this place", 1, Null, 1, "Thank you!", 3);
+INSERT INTO Reviews (restaurantID, stars, uploadDate, restaurantVisit, content, emojiUseful, emojiFunny, emojiCool, reply, userID) VALUES (2, 4, "2020-02-12", 2, "Love this place", 1, Null, 1, "Thank you!", "2020-02-13",3);
 INSERT INTO Reviews (restaurantID, stars, uploadDate, restaurantVisit, content, emojiUseful, emojiFunny, emojiCool, reply, userID) VALUES (3, 5, "2020-01-10", Null, "Best Naan in town", 1, 1, 1, Null, 4);
 INSERT INTO Reviews (restaurantID, stars, uploadDate, restaurantVisit, content, emojiUseful, emojiFunny, emojiCool, reply, userID) VALUES (4, 5, "2020-03-25", Null, "Try their springrolls", 1, Null, Null, Null, 5);
 INSERT INTO Reviews (restaurantID, stars, uploadDate, restaurantVisit, content, emojiUseful, emojiFunny, emojiCool, reply, userID) VALUES (3, 4, "2020-01-10", 1, "Lamb curry was my favorite", 1, Null, Null, Null, 3);

@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser());
 
 app.get('/reviews', (req, res) => {
-  db.allReviews((data, error) => {
+  db.allReviews((error, data) => {
     if (error) {
       console.log(error);
       res.status(404).send('error GET request on reviews');

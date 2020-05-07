@@ -10,14 +10,30 @@ connection.connect((error) => {
   }
 });
 
+
 const allReviews = function (callback) {
-  connection.query('SELECT * FROM reviews', (error, results) => {
+  connection.query('SELECT reviews.id, reviews.stars, DATE_FORMAT(reviews.uploadDate, "%c/%e/%Y") "uploadDate", reviews.restaurantVisit, reviews.content, reviews.emojiUseful, reviews.emojiFunny, reviews.emojiCool, reviews.reply, DATE_FORMAT(reviews.replyDate, "%c/%e/%Y") "replyDate", users.userName, restaurants.restaurantName FROM reviews INNER JOIN users ON users.id = reviews.userID INNER JOIN restaurants ON restaurants.id = reviews.restaurantID', (error, results) => {
     if (error) {
       console.log('unable to get reviews from db');
+      callback(error, null);
     } else {
-      console.log('successfully got reviews from db');
-      callback(results);
-    }
+      connection.query('SELECT picURL, userID, reviewID FROM pictures', (err, data) => {
+        if (err) {
+          console.log('unable to get pics for reviews from db');
+          callback(err, null);
+      } else {
+        for (let i = 0; i < results.length; i++) {
+          results[i].pictures = [];
+          for (let j = 0; j < data.length; j++) {
+            if (results[i].id === data[j].reviewID) {
+              results[i].pictures.push(data[j].picURL);
+            }
+          }
+        }
+        callback(null, results);
+      }
+    })
+  }
   });
 };
 
