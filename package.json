@@ -10,7 +10,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --colors --watchAll",
+    "test:coverage": "jest --coverage --colors --watchAll=false",
     "server-dev": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
     "start": "live-server",

@@ -40,7 +40,6 @@ const ReviewList = (props) => {
     <UnorderedList>
     {
       props.allReviews.map((item) => {
-        console.log(item);
         return <List><ReviewItem reviewItem={item}/></List>
       })
     }
