@@ -10,7 +10,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --colors",
+    "test:coverage": "jest --coverage --colors --watchAll",
     "server-dev": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
     "start": "live-server",
@@ -25,6 +25,7 @@
     "mysql": "^2.18.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-test-renderer": "^16.13.1",
     "request": "^2.88.2",
     "styled-components": "^5.1.0",
     "underscore": "^1.10.2"

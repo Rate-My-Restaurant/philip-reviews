@@ -12,7 +12,7 @@ connection.connect((error) => {
 
 
 const allReviews = function (callback) {
-  connection.query('SELECT reviews.id, reviews.stars, DATE_FORMAT(reviews.uploadDate, "%c/%e/%Y") "uploadDate", reviews.restaurantVisit, reviews.content, reviews.emojiUseful, reviews.emojiFunny, reviews.emojiCool, reviews.reply, users.userName, restaurants.restaurantName FROM reviews INNER JOIN users ON users.id = reviews.userID INNER JOIN restaurants ON restaurants.id = reviews.restaurantID', (error, results) => {
+  connection.query('SELECT reviews.id, reviews.stars, DATE_FORMAT(reviews.uploadDate, "%c/%e/%Y") "uploadDate", reviews.restaurantVisit, reviews.content, reviews.emojiUseful, reviews.emojiFunny, reviews.emojiCool, reviews.reply, DATE_FORMAT(reviews.replyDate, "%c/%e/%Y") "replyDate", users.userName, restaurants.restaurantName FROM reviews INNER JOIN users ON users.id = reviews.userID INNER JOIN restaurants ON restaurants.id = reviews.restaurantID', (error, results) => {
     if (error) {
       console.log('unable to get reviews from db');
       callback(error, null);
