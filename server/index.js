@@ -21,7 +21,7 @@ app.get('/reviews', (req, res) => {
 });
 
 app.get('/pictures', (req, res) => {
-  db.allPics((data, error) => {
+  db.allPics((error, data) => {
     if (error) {
       console.log(error);
       res.status(400).send(error);
@@ -31,6 +31,7 @@ app.get('/pictures', (req, res) => {
     }
   });
 });
+
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

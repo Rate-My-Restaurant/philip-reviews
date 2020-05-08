@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ReviewItem from './ReviewItem.jsx';
 import styled from 'styled-components';
 
+
 const UnorderedList = styled.ul `
   list-style: none;
   margin: 0;
@@ -18,32 +19,19 @@ const UnorderedList = styled.ul `
   padding-inline-start: 40px;
   color: #333;
 `
-const List = styled.li `
-  border-color: #eeeeef;
-  border-bottom: 1px solid #eeeeef;
-  padding-bottom: 24px!important;
-  margin-bottom: 24px!important;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-  display: list-item;
-  text-align: -webkit-match-parent;
-`
-
 
 const ReviewList = (props) => {
   console.log('reviewlistProps', props);
   return (
-    <UnorderedList>
-    {
-      props.allReviews.map((item) => {
-        return <List><ReviewItem reviewItem={item}/></List>
-      })
-    }
-    </UnorderedList>
+    <div>
+      <UnorderedList>
+        {
+          props.allReviews.map((item) => {
+            return <li><ReviewItem reviewItem={item}/></li>
+          })
+        }
+      </UnorderedList>
+    </div>
 )}
 
 export default ReviewList;

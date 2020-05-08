@@ -57,12 +57,9 @@ CREATE TABLE pictures (
 
 INSERT INTO Users(userName, memberStatus, statusYear, city, profPicURL,  friendCount) VALUES ("Michael Scott", NULL, NULL, "Palo Alto", "https://fec-yelpreviews.s3-us-west-1.amazonaws.com/profilepics/michaelscott.jpg", 3);
 INSERT INTO Users(userName, memberStatus, statusYear, city, profPicURL,  friendCount) VALUES ("Dwight Scrute", NULL, NULL, "San Jose", "https://fec-yelpreviews.s3-us-west-1.amazonaws.com/profilepics/dwightschrute.jpg", 5);
-INSERT INTO Users(userName, memberStatus, statusYear, city, profPicURL,  friendCount) VALUES ("Pam Beesly", "Elite", 2020, "Fremont", "https://fec-yelpreviews.s3-us-west-1.amazonaws.com/profilepics/pambeesly.jpg
-", 223);
-INSERT INTO Users(userName, memberStatus, statusYear, city, profPicURL,  friendCount) VALUES ("Jim Halpert", "Elite", 2020, "San Francisco", "https://fec-yelpreviews.s3-us-west-1.amazonaws.com/profilepics/jimhalpert.jpg
-", 256);
-INSERT INTO Users(userName, memberStatus, statusYear, city, profPicURL,  friendCount) VALUES ("Angela Martin", "Elite", 2020, "Berkeley", "https://fec-yelpreviews.s3-us-west-1.amazonaws.com/profilepics/angelamartin.jpg
-", 20);
+INSERT INTO Users(userName, memberStatus, statusYear, city, profPicURL,  friendCount) VALUES ("Pam Beesly", "Elite", 2020, "Fremont", "https://fec-yelpreviews.s3-us-west-1.amazonaws.com/profilepics/pambeesly.jpg", 223);
+INSERT INTO Users(userName, memberStatus, statusYear, city, profPicURL,  friendCount) VALUES ("Jim Halpert", "Elite", 2020, "San Francisco", "https://fec-yelpreviews.s3-us-west-1.amazonaws.com/profilepics/jimhalpert.jpg", 256);
+INSERT INTO Users(userName, memberStatus, statusYear, city, profPicURL,  friendCount) VALUES ("Angela Martin", "Elite", 2020, "Berkeley", "https://fec-yelpreviews.s3-us-west-1.amazonaws.com/profilepics/angelamartin.jpg", 20);
 
 INSERT INTO Restaurants(restaurantName) VALUES ('Taste of Italy');
 INSERT INTO Restaurants(restaurantName) VALUES ('Taste of Korea');

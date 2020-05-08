@@ -4,6 +4,140 @@ import styled from 'styled-components';
 
 import Pictures from './Pictures';
 
+const Table = styled.div `
+  min-width: calc(100% + 2 * 16px);
+  margin-left: -16px;
+  margin-right: -16px;
+  border-collapse: separate;
+  border-spacing: 16px 0;
+  display: table;
+  table-layout: auto;
+  border-color: #eeeeef;
+  border-bottom: 1px solid #eeeeef;
+  padding-bottom: 24px!important;
+  margin-bottom: 24px!important;
+`
+
+const Left = styled.div `
+  box-sizing: border-box;
+  width: 33.33333%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-color: #eeeeef;
+  margin-left: 8px;
+  margin-right: 8px;
+  display: table-cell;
+  vertical-align: top;
+`
+const GridLeft = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+`
+
+const ProfPic = styled.img `
+  height: 60px;
+  width: 50px;
+  loading: lazy;
+  border-radius: 4px;
+  vertical-align: middle;
+`
+
+const Right = styled.div`
+  box-sizing: border-box;
+  display: table-cell;
+  vertical-align: top;
+  width: 66.66667%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-color: #eeeeef;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+`
+const UserName = styled.div `
+  text-align: left;
+  color: #00838f;
+  font-weight: 700;
+  font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+`
+const UserCity = styled.div `
+  text-align: left;
+  color: #2b273c;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 18px;
+  font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+`
+
+const UserText = styled.div `
+  text-align: left;
+  color: #2b273c;
+  font-size: 12px;
+  line-height: 18px;
+  font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+  font-weight: 400;
+`
+const MembershipColor = styled.div `
+  text-align: left;
+  color: #ff523d;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+`
+
+const UserProfileIcon = styled.svg `
+  width: 18px;
+  height: 18px;
+  fill: #f15c00;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -.1em;
+  overflow: hidden;
+`
+
+const ReviewStarDate = styled.div `
+  margin-left: -8px;
+  margin-right: -8px;
+  border-collapse: separate;
+  border-spacing: 8px 0;
+  display: table;
+  min-width: 100%;
+  table-layout: auto;
+  border-color: #eeeeef;
+`
+
+
+const starPosition = {
+  5: "0 -500px",
+  4: "0 -480px",
+  3: "0 -440px",
+  2: "0 -400px",
+  1: "0 -360px"
+};
+
+const StarDiv = styled.div `
+  min-width: 100%;
+  width: 108px;
+  height: 20px;
+  background: url(https://s3-media0.fl.yelpcdn.com/assets/public/stars_v2.yelp_design_web.yji-52d3d7a328db670d4402843cbddeed89.png) no-repeat;
+  background-position: ${props => starPosition[props.stars]};
+  background-size: 176px 680px;
+  display: inline-block;
+`
+const StarImg = styled.img `
+  clip: rect(0 0 0 0);
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+`
+
 const PhotoNumber = styled.span`
   text-align: left;
   font-size: 12px;
@@ -156,10 +290,6 @@ const ReplyFrom = styled.span `
   font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
 `
 
-const ReplyDate = styled.span `
-
-`
-
 const ReplyBullet = styled.span `
   color: #999!important;
   font-size: 10px!important;
@@ -177,12 +307,53 @@ const ReplyText = styled.span `
   line-height: 20p;
 `
 
+
 const ReviewItem = (props) => (
-  <div>
-    <div>
-      <span>{props.reviewItem.stars} Stars</span>
-      <UploadDate>{props.reviewItem.uploadDate}</UploadDate>
-    </div>
+  <Table>
+    <Left>
+      <GridLeft>
+      <div>
+        <ProfPic src={props.reviewItem.profPicURL} />
+      </div>
+      <div>
+        <UserName>{props.reviewItem.userName}</UserName>
+        <UserCity>{props.reviewItem.city}</UserCity>
+        <UserText>
+          <UserProfileIcon xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" class="icon_svg"><g><path d="M7.904 9.43l-2.098 4.697a.9.9 0 0 1-1.612 0L2.096 9.43a.902.902 0 0 1 .806-1.305h4.196c.67 0 1.105.705.806 1.305zM5 7.375a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"></path><path d="M15.904 9.43l-2.098 4.697a.89.89 0 0 1-.806.498.89.89 0 0 1-.806-.498L10.096 9.43a.902.902 0 0 1 .806-1.305h4.195c.67 0 1.106.705.807 1.305zM13 7.375a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" opacity=".502"></path></g>
+          </UserProfileIcon>
+          <b>{props.reviewItem.friendCount}</b> friends
+        </UserText>
+        <UserText>
+          <UserProfileIcon xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" class="icon_svg"><path d="M13 3H5c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1.505 9.643l-2.526-1.55L6.526 12.7 7 9.934 5 7.977l2.766-.404L8.97 4.7l1.264 2.873L13 7.977l-2 1.957.495 2.71z"></path></UserProfileIcon>
+          <b>{props.reviewItem.reviews_count}</b> reviews
+        </UserText>
+
+          {
+            props.reviewItem.pictures_count > 0 &&
+            <UserText>
+            <UserProfileIcon xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" class="icon_svg"><path d="M15 15H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2h2a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2zM9 5a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0 6.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"></path></UserProfileIcon>
+            <b>{props.reviewItem.pictures_count}</b> photos
+            </UserText>
+          }
+
+        {
+          props.reviewItem.memberStatus &&
+          <MembershipColor>{props.reviewItem.memberStatus}'{props.reviewItem.statusYear}</MembershipColor>
+        }
+      </div>
+      </GridLeft>
+    </Left>
+    <Right>
+    <ReviewStarDate>
+      <span>
+        <StarDiv stars={props.reviewItem.stars}>
+          <StarImg src="https://s3-media0.fl.yelpcdn.com/assets/public/stars_v2.yelp_design_web.yji-52d3d7a328db670d4402843cbddeed89.png"/>
+        </StarDiv>
+      </span>
+      <div>
+          <UploadDate>{props.reviewItem.uploadDate}</UploadDate>
+      </div>
+    </ReviewStarDate>
     <div>
       {
         props.reviewItem.pictures.length > 0 &&
@@ -244,6 +415,7 @@ const ReviewItem = (props) => (
           <ReplyText>{props.reviewItem.replyDate}<ReplyBullet>•</ReplyBullet>{props.reviewItem.reply}</ReplyText>
         </ReplyBox>
       }
-  </div>
+    </Right>
+  </Table>
 );
 export default ReviewItem;
