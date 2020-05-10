@@ -70,11 +70,6 @@ class App extends React.Component {
       searchedReviews: [],
       searchedTerm: '',
       sortValue: 'newest first',
-      emoji: {
-        reviewID: '',
-        emojiType: '',
-        toggleON: false,
-      },
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -85,7 +80,7 @@ class App extends React.Component {
   }
 
     componentDidMount() {
-      axios.get('/reviews')
+      axios.get('/reviews/restaurants/2')
         .then(res => {
           console.log('GET review request successful:', res.data)
           let allreviews = res.data;
@@ -96,6 +91,7 @@ class App extends React.Component {
             console.log('GET reviews,pic number failed:', error)
         });
     };
+
 
     // make a clickhandle that recieves a word of search
     // filters out review contents that contain those words
@@ -142,24 +138,19 @@ class App extends React.Component {
     }
 
     buttonSubmit(emoji, reviewID) {
-      console.log(emoji);
-      console.log(reviewID);
-      this.setState({
-        emoji: {
-          reviewID: reviewID,
-          emojiType: emoji,
-          toggleOn: !state.emoji.toggleOn,
-        }
-      });
-      if (this.usefulEmojiToggleOn === true) {
-        axios.post('/reviews/emoji', this.state.emoji)
+      axios.post('/reviews/emoji', { emoji, reviewID })
         .then(res => {
-          setState({
-            reviews: res
+          axios.get('/reviews/restaurants/2')
+          .then(res => {
+            let allreviews = res.data;
+            allreviews.sort((a, b) => Date.parse(b.uploadDate) - Date.parse(a.uploadDate))
+            this.setState({reviews: allreviews});
           })
+          .catch(error => {
+              console.log('GET reviews,pic number failed:', error)
+          });
         })
         .catch(error => console.log(error))
-      }
     }
 
   render() {

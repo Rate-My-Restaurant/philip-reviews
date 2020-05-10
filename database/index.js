@@ -11,9 +11,9 @@ connection.connect((error) => {
 });
 
 
-const allReviews = function (callback) {
+const allReviews = function (id, callback) {
   connection.query(`
-  SELECT reviews.id, reviews.stars, DATE_FORMAT(reviews.uploadDate, "%c/%e/%Y") "uploadDate", reviews.restaurantVisit, reviews.content, reviews.emojiUseful, reviews.emojiFunny, reviews.emojiCool, reviews.reply, DATE_FORMAT(reviews.replyDate, "%c/%e/%Y") "replyDate", users.id "userID", users.profPicURL, users.userName, users.city, users.friendCount, users.memberStatus, users.statusYear, users.pictures_count, users.reviews_count, restaurants.restaurantName FROM reviews INNER JOIN (SELECT users.id, users.userName, users.memberStatus, users.statusYear, users.city, users.profPicURL, users.friendCount, COUNT(DISTINCT pictures.id) AS pictures_count, COUNT(DISTINCT reviews.id) AS reviews_count FROM users LEFT JOIN pictures ON pictures.userID = users.id LEFT JOIN reviews ON reviews.userID = users.id GROUP BY 1) AS users ON users.id = reviews.userID INNER JOIN restaurants ON restaurants.id = reviews.restaurantID`, (error, results) => {
+  SELECT reviews.id, reviews.stars, DATE_FORMAT(reviews.uploadDate, "%c/%e/%Y") "uploadDate", reviews.restaurantVisit, reviews.content, reviews.emojiUseful, reviews.emojiFunny, reviews.emojiCool, reviews.reply, DATE_FORMAT(reviews.replyDate, "%c/%e/%Y") "replyDate", users.id "userID", users.profPicURL, users.userName, users.city, users.friendCount, users.memberStatus, users.statusYear, users.pictures_count, users.reviews_count, restaurants.restaurantName FROM reviews INNER JOIN (SELECT users.id, users.userName, users.memberStatus, users.statusYear, users.city, users.profPicURL, users.friendCount, COUNT(DISTINCT pictures.id) AS pictures_count, COUNT(DISTINCT reviews.id) AS reviews_count FROM users LEFT JOIN pictures ON pictures.userID = users.id LEFT JOIN reviews ON reviews.userID = users.id GROUP BY 1) AS users ON users.id = reviews.userID INNER JOIN restaurants ON restaurants.id = reviews.restaurantID WHERE restaurants.id = ${id}`, (error, results) => {
     if (error) {
       console.log('unable to get reviews from db');
       callback(error, null);
@@ -52,9 +52,9 @@ const allPics = (callback) => {
 };
 
 const emojiPlus = (data, callback) => {
-  connection.query('UPDATE reviews SET ? = ? + 1 WHERE id = ?', [data.emoji.emojiType, data.emoji.reviewID], (error, results) => {
+  connection.query(`UPDATE reviews SET ${data.emoji} = ${data.emoji} + 1 WHERE id = ${data.reviewID}`, (error, results) => {
     if (error) {
-      console.log('Failed to update emoji count');
+      console.log('Failed to update emoji count, ', error);
     } else {
       callback(null, results);
     }
