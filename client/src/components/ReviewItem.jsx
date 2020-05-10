@@ -233,6 +233,19 @@ const EmojiText = styled.span `
   font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   font-weight: 400;
 `
+const UsefulButton = styled.button `
+  --mousedown-x: 53px;
+  --mousedown-y: 10.6719px;
+  --button-width: 81.6563px;
+  border: none;
+  padding: 4px;
+  height: auto;
+  color: #2b273c;
+  background: transparent;
+  background-image: none;
+  background-repeat: no-repeat;
+  transition: all .8s;
+`
 const ReportFlagDiv = styled.div `
   position: relative;
   border-color: #eeeeef;
@@ -390,8 +403,10 @@ const ReviewItem = (props) => (
     }
     <div>
       <EmojiText>
-        <EmojiIcon xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon_svg"><path d="M12 1a11 11 0 0 1 11 11c0 6.075-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1zm0 20a9 9 0 1 0 0-18 9 9 0 0 0 0 18zm0-15.82a5.56 5.56 0 0 1 3 10.26V17a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-1.56a5.56 5.56 0 0 1 3-10.26zM11 17h2v-1h-2v1zm2.56-3a3.58 3.58 0 1 0-3.12 0h3.12z"></path>
-        </EmojiIcon> Useful {props.reviewItem.emojiUseful}
+        <UsefulButton type="button" value="emojiUseful" reviewId={props.reviewItem.id} onClick={(value, reviewID) => props.buttonSubmit(value, reviewID)} >
+          <EmojiIcon xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon_svg"><path d="M12 1a11 11 0 0 1 11 11c0 6.075-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1zm0 20a9 9 0 1 0 0-18 9 9 0 0 0 0 18zm0-15.82a5.56 5.56 0 0 1 3 10.26V17a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-1.56a5.56 5.56 0 0 1 3-10.26zM11 17h2v-1h-2v1zm2.56-3a3.58 3.58 0 1 0-3.12 0h3.12z"></path>
+          </EmojiIcon> Useful {props.reviewItem.emojiUseful}
+        </UsefulButton>
       </EmojiText>
       <EmojiText>
         <EmojiIcon xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon_svg"><path d="M12 23C5.925 23 1 18.075 1 12S5.925 1 12 1s11 4.925 11 11a11 11 0 0 1-11 11zm0-20a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm-4.5 8a1.5 1.5 0 0 1 3 0h-3zm6 0a1.5 1.5 0 0 1 3 0h-3zm-7.21 2h11.46a.26.26 0 0 1 .25.29c-.57 3.25-3 5.71-6 5.71s-5.43-2.46-5.96-5.71a.26.26 0 0 1 .25-.29z"></path>

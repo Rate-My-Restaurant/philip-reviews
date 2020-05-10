@@ -20,6 +20,21 @@ app.get('/reviews', (req, res) => {
   });
 });
 
+app.post('/reviews/emoji', (req, res) => {
+    if (error) {
+      console.log(error);
+      res.status(404).send('error POST request on emoji increment');
+    } else {
+      db.emojiPlus(req.body, (err, data) => {
+        if (err) {
+          res.status(404).send('error updating emoji')
+        } else {
+          res.status(200).send(data)
+        }
+      });
+    }
+  })
+
 app.get('/pictures', (req, res) => {
   db.allPics((error, data) => {
     if (error) {

@@ -51,6 +51,16 @@ const allPics = (callback) => {
   });
 };
 
+const emojiPlus = (data, callback) => {
+  connection.query('UPDATE reviews SET ? = ? + 1 WHERE id = ?', [data.emoji.emojiType, data.emoji.reviewID], (error, results) => {
+    if (error) {
+      console.log('Failed to update emoji count');
+    } else {
+      callback(null, results);
+    }
+  })
+}
 
 module.exports.allReviews = allReviews;
 module.exports.allPics = allPics;
+module.exports.emojiPlus = emojiPlus;

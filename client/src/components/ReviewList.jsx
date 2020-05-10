@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import ReviewItem from './ReviewItem.jsx';
 import styled from 'styled-components';
 
+// need a write review item
+// pass down user's profile
+// hover -> star
+// make a modal that lets you write a review and submit
 
 const UnorderedList = styled.ul `
   list-style: none;
@@ -21,13 +25,12 @@ const UnorderedList = styled.ul `
 `
 
 const ReviewList = (props) => {
-  console.log('reviewlistProps', props);
   return (
     <div>
       <UnorderedList>
         {
           props.allReviews.map((item) => {
-            return <li><ReviewItem reviewItem={item}/></li>
+            return <li><ReviewItem reviewItem={item} buttonSubmit={props.buttonSubmit}/></li>
           })
         }
       </UnorderedList>

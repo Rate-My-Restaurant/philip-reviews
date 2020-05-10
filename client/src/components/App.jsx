@@ -1,47 +1,179 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import styled from 'styled-components';
+
 import ReviewList from './ReviewList.jsx';
 import SearchReview from './SearchReview.jsx';
+
+const ReviewPage = styled.section `
+  border-color: #eeeeef;
+  border-top: 1px solid #eeeeef;
+  padding-top: 32px!important;
+  margin-top: 32px!important;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+`
+
+const Recommended = styled.div `
+  margin-left: -12px;
+  margin-right: -12px;
+  border-collapse: separate;
+  border-spacing: 12px 0;
+  display: table;
+  min-width: 100%;
+  table-layout: auto;
+  border-color: #eeeeef;
+  margin-bottom: 24px!important;
+`
+
+const RecommendedDiv = styled.div `
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-left: 6px;
+  margin-right: 6px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  display: table-cell;
+  width: 100%;
+  border-color: #eeeeef;
+`
+
+const RecommendedText = styled.h4 `
+  display: inline;
+  font-size: 20px;
+  line-height: 26px;
+  font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+  word-wrap: break-word!important;
+  word-break: break-word!important;
+  overflow-wrap: break-word!important;
+  color: #2b273c;
+  font-weight: 700;
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  border-collapse: collapse;
+  border-spacing: 0;
+`
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       reviews: [],
+      searchedReviews: [],
+      searchedTerm: '',
+      sortValue: 'newest first',
+      emoji: {
+        reviewID: '',
+        emojiType: '',
+        toggleON: false,
+      },
     };
-  }
 
-  // async componentDidMount() {
-    // try {
-    //   const reviews = await axios.get('/reviews');
-    //   const numReviewsPics = await axios.get('/userpicsreviews');
-    //   await this.setState({
-    //     reviews,
-    //     userPicReviews: numReviewsPics
-    //   });
-    // } catch (error) {
-    //   console.error('GET review request not successful:', error)
-    // }
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeSort = this.handleChangeSort.bind(this);
+    this.handleSubmitClear = this.handleSubmitClear.bind(this);
+    this.buttonSubmit = this.buttonSubmit.bind(this);
+  }
 
     componentDidMount() {
       axios.get('/reviews')
         .then(res => {
           console.log('GET review request successful:', res.data)
-          this.setState({reviews: res.data});
+          let allreviews = res.data;
+          allreviews.sort((a, b) => Date.parse(b.uploadDate) - Date.parse(a.uploadDate))
+          this.setState({reviews: allreviews});
          })
         .catch(error => {
             console.log('GET reviews,pic number failed:', error)
         });
     };
 
+    // make a clickhandle that recieves a word of search
+    // filters out review contents that contain those words
+    // render only the filtered contents
+
+    handleSubmit() {
+      let searchedWord = this.state.searchedTerm;
+      let matchedReviews = [];
+      for (let i = 0; i < this.state.reviews.length; i++) {
+        if (this.state.reviews[i].content.toLowerCase().indexOf(searchedWord.toLowerCase()) > -1) {
+          matchedReviews.push(this.state.reviews[i])
+        }
+      }
+      this.setState({
+        searchedReviews: matchedReviews,
+        searchedTerm: searchedWord
+      })
+    }
+
+    handleChange(event) {
+      this.setState({searchedTerm: event.target.value})
+    }
+
+    handleChangeSort(event) {
+      let list = this.state.reviews.slice();
+      const lookup = {
+        "newest first": () => list.sort((a, b) => Date.parse(b.uploadDate) - Date.parse(a.uploadDate)),
+        "oldest first": () => list.sort((a, b) => Date.parse(a.uploadDate) - Date.parse(b.uploadDate)),
+        "highest rate": () => list.sort((a, b) => b.stars - a.stars),
+        "lowest rate": () => list.sort((a, b) => a.stars - b.stars),
+        "elites": () => list = list.filter(item => item.memberStatus === "Elite"),
+      };
+      lookup[event.target.value]();
+      this.setState({
+        sortValue: event.target.value,
+        reviews: list
+      })
+    }
+
+    handleSubmitClear() {
+      this.setState({
+        searchedTerm: '',
+      })
+    }
+
+    buttonSubmit(emoji, reviewID) {
+      console.log(emoji);
+      console.log(reviewID);
+      this.setState({
+        emoji: {
+          reviewID: reviewID,
+          emojiType: emoji,
+          toggleOn: !state.emoji.toggleOn,
+        }
+      });
+      if (this.usefulEmojiToggleOn === true) {
+        axios.post('/reviews/emoji', this.state.emoji)
+        .then(res => {
+          setState({
+            reviews: res
+          })
+        })
+        .catch(error => console.log(error))
+      }
+    }
 
   render() {
     return (
       <div>
-        <h4>Recommended Reviews</h4>
-        <SearchReview/>
-        <ReviewList allReviews={this.state.reviews} numReviewsPics={this.state.userPicReviews}/>
+      <ReviewPage>
+        <Recommended>
+          <RecommendedDiv>
+            <RecommendedText>Recommended Reviews</RecommendedText>
+          </RecommendedDiv>
+        </Recommended>
+        <SearchReview handleSubmit={this.handleSubmit} searchedTerm={this.state.searchedTerm} handleChange={this.handleChange} sortValue={this.state.sortValue} handleChangeSort={this.handleChangeSort} searchedReviews={this.state.searchedReviews} handleSubmitClear={this.handleSubmitClear}/>
+        <ReviewList allReviews={this.state.searchedTerm.length > 0 ? this.state.searchedReviews : this.state.reviews} numReviewsPics={this.state.userPicReviews}  buttonSubmit={this.buttonSubmit}/>
+      </ReviewPage>
       </div>
     )
   }
