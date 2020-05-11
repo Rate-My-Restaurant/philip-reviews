@@ -155,11 +155,11 @@ const SearchReview = (props) => (
       <div>
         <span>Sort by</span>
         <select value={props.sortValue} onChange={props.handleChangeSort}>
-          <option value="newest first">Newest First</option>
-          <option value="oldest first">Oldest First</option>
-          <option value="highest rate">Highest Rate</option>
-          <option value="lowest rate">Lowest Rate</option>
-          <option value="elites">Elites</option>
+          <option value="reviews.uploadDate desc">Newest First</option>
+          <option value="reviews.uploadDate asc">Oldest First</option>
+          <option value="reviews.stars desc">Highest Rate</option>
+          <option value="reviews.stars asc">Lowest Rate</option>
+          <option value="elite">Elites</option>
         </select>
       </div>
     </SearchSortDiv>

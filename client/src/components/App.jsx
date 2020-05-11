@@ -99,16 +99,28 @@ class App extends React.Component {
 
     handleSubmit() {
       let searchedWord = this.state.searchedTerm;
-      let matchedReviews = [];
-      for (let i = 0; i < this.state.reviews.length; i++) {
-        if (this.state.reviews[i].content.toLowerCase().indexOf(searchedWord.toLowerCase()) > -1) {
-          matchedReviews.push(this.state.reviews[i])
-        }
-      }
-      this.setState({
-        searchedReviews: matchedReviews,
-        searchedTerm: searchedWord
-      })
+      console.log(searchedWord)
+      axios.get(`/reviews/restaurants/2?q=${searchedWord}`)
+        .then(res => {
+          console.log(res);
+          this.setState({
+            searchedTerm: searchedWord,
+            searchedReviews: res.data,
+          })
+        })
+        .catch(error => {
+          console.log('failed to get searched reviews')
+        })
+      // let matchedReviews = [];
+      // for (let i = 0; i < this.state.reviews.length; i++) {
+      //   if (this.state.reviews[i].content.toLowerCase().indexOf(searchedWord.toLowerCase()) > -1) {
+      //     matchedReviews.push(this.state.reviews[i])
+      //   }
+      // }
+      // this.setState({
+      //   searchedReviews: matchedReviews,
+      //   searchedTerm: searchedWord
+      // })
     }
 
     handleChange(event) {
@@ -116,25 +128,34 @@ class App extends React.Component {
     }
 
     handleChangeSort(event) {
-      let list = this.state.reviews.slice();
-      const lookup = {
-        "newest first": () => list.sort((a, b) => Date.parse(b.uploadDate) - Date.parse(a.uploadDate)),
-        "oldest first": () => list.sort((a, b) => Date.parse(a.uploadDate) - Date.parse(b.uploadDate)),
-        "highest rate": () => list.sort((a, b) => b.stars - a.stars),
-        "lowest rate": () => list.sort((a, b) => a.stars - b.stars),
-        "elites": () => list = list.filter(item => item.memberStatus === "Elite"),
-      };
-      lookup[event.target.value]();
-      this.setState({
-        sortValue: event.target.value,
-        reviews: list
-      })
+      const value = event.target.value;
+
+      axios.get(`/reviews/restaurants/2?sort_by=${value}`)
+        .then(res => {
+          this.setState({
+            reviews: res.data,
+            sortValue: value
+          })
+        })
+        .catch(error => {
+          console.log(error);
+          console.log('failed to get sorted reviews')
+        })
     }
 
     handleSubmitClear() {
-      this.setState({
-        searchedTerm: '',
-      })
+      axios.get('/reviews/restaurants/2')
+        .then(res => {
+          let allreviews = res.data;
+          allreviews.sort((a, b) => Date.parse(b.uploadDate) - Date.parse(a.uploadDate))
+          this.setState({
+            searchedReviews: allreviews,
+            searchedTerm: ''
+          });
+         })
+        .catch(error => {
+            console.log('GET reviews,pic number failed:', error)
+        });
     }
 
     buttonSubmit(emoji, reviewID) {
