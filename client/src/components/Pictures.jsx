@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
 const ImageForm = styled.span `
-  margin-right: 12px;
-  margin-bottom: 12px;
+  margin: 5px;
   border-color: #eeeeef;
 `
 export const ImageSize = styled.img `
@@ -14,6 +13,7 @@ export const ImageSize = styled.img `
   outline: none;
   border-radius: 4px;
   vertical-align: middle;
+  margin: 5px;
 `
 
 const Pictures = (props) => (

@@ -25,6 +25,7 @@
     "mysql": "^2.18.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-paginate": "^6.3.2",
     "react-test-renderer": "^16.13.1",
     "request": "^2.88.2",
     "styled-components": "^5.1.0",

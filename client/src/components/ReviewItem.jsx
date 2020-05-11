@@ -6,10 +6,7 @@ import Pictures from './Pictures';
 
 const Table = styled.div `
   min-width: calc(100% + 2 * 16px);
-  margin-left: -16px;
-  margin-right: -16px;
   border-collapse: separate;
-  border-spacing: 16px 0;
   display: table;
   table-layout: auto;
   border-color: #eeeeef;
@@ -21,11 +18,8 @@ const Table = styled.div `
 const Left = styled.div `
   box-sizing: border-box;
   width: 33.33333%;
-  border-collapse: collapse;
   border-spacing: 0;
   border-color: #eeeeef;
-  margin-left: 8px;
-  margin-right: 8px;
   display: table-cell;
   vertical-align: top;
 `
@@ -51,8 +45,7 @@ const Right = styled.div`
   border-spacing: 0;
   border-color: #eeeeef;
   margin-left: 8px;
-  margin-right: 8px;
-}
+  margin-right: 20px;
 `
 const UserName = styled.div `
   text-align: left;
@@ -70,7 +63,6 @@ const UserCity = styled.div `
   line-height: 18px;
   font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
 `
-
 const UserText = styled.div `
   text-align: left;
   color: #2b273c;
@@ -87,7 +79,6 @@ const MembershipColor = styled.div `
   line-height: 18px;
   font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
 `
-
 const UserProfileIcon = styled.svg `
   width: 18px;
   height: 18px;
@@ -97,8 +88,8 @@ const UserProfileIcon = styled.svg `
   position: relative;
   top: -.1em;
   overflow: hidden;
+  padding-right: 5px;
 `
-
 const ReviewStarDate = styled.div `
   margin-left: -8px;
   margin-right: -8px;
@@ -108,9 +99,8 @@ const ReviewStarDate = styled.div `
   min-width: 100%;
   table-layout: auto;
   border-color: #eeeeef;
+  margin-bottom: 5px;
 `
-
-
 const starPosition = {
   5: "0 -500px",
   4: "0 -480px",
@@ -119,8 +109,7 @@ const starPosition = {
   1: "0 -360px"
 };
 
-const StarDiv = styled.div `
-  min-width: 100%;
+const StarSpan = styled.span `
   width: 108px;
   height: 20px;
   background: url(https://s3-media0.fl.yelpcdn.com/assets/public/stars_v2.yelp_design_web.yji-52d3d7a328db670d4402843cbddeed89.png) no-repeat;
@@ -137,7 +126,9 @@ const StarImg = styled.img `
   width: 1px;
   height: 1px;
 `
-
+const PhotoCheckin = styled.div  `
+  margin-bottom: 15px;
+`
 const PhotoNumber = styled.span`
   text-align: left;
   font-size: 12px;
@@ -156,7 +147,6 @@ const PhotoIcon = styled.svg `
   top: -.1em;
   overflow: hidden;
 `
-
 const UploadDate = styled.span`
   text-align: left;
   color: #757280;
@@ -164,8 +154,8 @@ const UploadDate = styled.span`
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
+  padding-left: 10px;
 `
-
 const CheckinDate = styled.span`
   text-align: left;
   color: 757280;
@@ -173,8 +163,7 @@ const CheckinDate = styled.span`
   line-height: 18px;
   font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   font-weight: 400;
-`;
-
+`
 const CheckinIcon = styled.svg `
   width: 18px;
   height: 18px;
@@ -184,9 +173,10 @@ const CheckinIcon = styled.svg `
   vertical-align: middle;
   position: relative;
   top: -.1em;
-  overflow: hidde
+  overflow: hidden;
+  padding-left: 5px;
+  padding-right: 5px;
 `
-
 const ReviewText = styled.div `
   color: #2b273c;
   font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
@@ -206,16 +196,20 @@ const ReviewText = styled.div `
   display: table-cell;
   vertical-align: top;
   border-color: #eeeeef;
+  margin-bottom: 15px;
 `
-
 const SeeAllPhotos = styled.div `
   font-size: 14px;
   line-height: 20px;
   color: #00838f;
   font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   text-decoration: none;
+  margin-bottom: 20px;
 `
-
+const EmojiDiv = styled.div `
+  margin-top: 20px;
+  margin-bottom: 30px;
+`
 const EmojiIcon = styled.svg `
   width: 24px;
   height: 24px;
@@ -251,7 +245,6 @@ const ReportFlagDiv = styled.div `
   border-color: #eeeeef;
   display: inline-block;
 `
-
 const ReportFlagBox = styled.span `
   width: 18px;
   height: 18px;
@@ -276,7 +269,6 @@ const ReportFlag = styled.svg `
   color: #757280;
   white-space: nowrap;
 `
-
 const ReplyBox = styled.div `
   display: block;
   border-collapse: collapse;
@@ -293,7 +285,6 @@ const ReplyBox = styled.div `
   padding-right: 24px!important;
   padding-left: 24px!important;
 `
-
 const ReplyFrom = styled.span `
   text-align: left;
   color: #757280;
@@ -302,24 +293,23 @@ const ReplyFrom = styled.span `
   line-height: 18px;
   font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
 `
-
 const ReplyBullet = styled.span `
   color: #999!important;
   font-size: 10px!important;
   text-decoration: none!important;
   text-indent: -1px!important;
   display: inline-block!important;
+  padding-left: 5px;
+  padding-right: 5px;
 `
-
 const ReplyText = styled.span `
   text-align: left;
   color: #2b273c;
   font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
   font-weight: 400;
   font-size: 14px;
-  line-height: 20p;
+  line-height: 20px;
 `
-
 
 const ReviewItem = (props) => (
   <Table>
@@ -358,16 +348,15 @@ const ReviewItem = (props) => (
     </Left>
     <Right>
     <ReviewStarDate>
-      <span>
-        <StarDiv stars={props.reviewItem.stars}>
-          <StarImg src="https://s3-media0.fl.yelpcdn.com/assets/public/stars_v2.yelp_design_web.yji-52d3d7a328db670d4402843cbddeed89.png"/>
-        </StarDiv>
-      </span>
       <div>
-          <UploadDate>{props.reviewItem.uploadDate}</UploadDate>
+        <StarSpan stars={props.reviewItem.stars}>
+          <StarImg src="https://s3-media0.fl.yelpcdn.com/assets/public/stars_v2.yelp_design_web.yji-52d3d7a328db670d4402843cbddeed89.png"/>
+        </StarSpan>
+        <UploadDate>{props.reviewItem.uploadDate}
+        </UploadDate>
       </div>
     </ReviewStarDate>
-    <div>
+    <PhotoCheckin>
       {
         props.reviewItem.pictures.length > 0 &&
         <PhotoNumber>
@@ -388,7 +377,7 @@ const ReviewItem = (props) => (
         </CheckinDate>
 
       }
-    </div>
+    </PhotoCheckin>
     <ReviewText>{props.reviewItem.content}</ReviewText>
     {
       props.reviewItem.pictures.map(picture => {
@@ -401,7 +390,7 @@ const ReviewItem = (props) => (
         See all photos from {props.reviewItem.userName} for {props.reviewItem.restaurantName}
       </SeeAllPhotos>
     }
-    <div>
+    <EmojiDiv>
       <EmojiText>
         <EmojiButton type="button" onClick={() => props.buttonSubmit("emojiUseful", props.reviewItem.id)} >
           <EmojiIcon xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon_svg"><path d="M12 1a11 11 0 0 1 11 11c0 6.075-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1zm0 20a9 9 0 1 0 0-18 9 9 0 0 0 0 18zm0-15.82a5.56 5.56 0 0 1 3 10.26V17a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-1.56a5.56 5.56 0 0 1 3-10.26zM11 17h2v-1h-2v1zm2.56-3a3.58 3.58 0 1 0-3.12 0h3.12z"></path>
@@ -417,22 +406,22 @@ const ReviewItem = (props) => (
       <EmojiText>
         <EmojiButton type="button" onClick={() => props.buttonSubmit("emojiCool", props.reviewItem.id)}>
           <EmojiIcon xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon_svg"><path d="M12 23C5.925 23 1 18.075 1 12S5.925 1 12 1s11 4.925 11 11a11 11 0 0 1-11 11zm0-20a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm-7.48 7.56a.43.43 0 0 1 .41-.56h14.14a.43.43 0 0 1 .41.56l-.85 2.53a3 3 0 0 1-2.8 2 3 3 0 0 1-2.8-2l-.28-.85a.8.8 0 0 0-.75-.54.8.8 0 0 0-.75.54l-.28.85a3 3 0 0 1-2.8 2 3 3 0 0 1-2.8-2l-.85-2.53zm3.18 5.63a16.3 16.3 0 0 0 8.6 0 .25.25 0 0 1 .26.39A5.71 5.71 0 0 1 12 19a5.71 5.71 0 0 1-4.56-2.42.25.25 0 0 1 .26-.39z"></path>
-          </EmojiIcon>Cool {props.reviewItem.emojiCool}
+          </EmojiIcon> Cool {props.reviewItem.emojiCool}
         </EmojiButton>
       </EmojiText>
-      <ReportFlagDiv>
+      {/* <ReportFlagDiv>
         <ReportFlagBox>
           <ReportFlag xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" class="icon_svg"><path d="M6 10V3c4.976 1.098 4.024-1 8 0v7c-4.024-.976-3.024 1.024-8 0zM4 2h1v14H4V2z"></path>
           </ReportFlag>
         </ReportFlagBox>
-      </ReportFlagDiv>
-    </div>
+      </ReportFlagDiv> */}
+    </EmojiDiv>
       {
         props.reviewItem.reply &&
         <ReplyBox>
           <ReplyFrom>Comment from {props.reviewItem.restaurantName}
           </ReplyFrom><br/>
-          <ReplyText>{props.reviewItem.replyDate}<ReplyBullet>•</ReplyBullet>{props.reviewItem.reply}</ReplyText>
+          <ReplyText>{props.reviewItem.replyDate}<ReplyBullet> • </ReplyBullet>{props.reviewItem.reply}</ReplyText>
         </ReplyBox>
       }
     </Right>

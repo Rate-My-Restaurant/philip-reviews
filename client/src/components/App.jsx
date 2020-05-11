@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import ReactPaginate from 'react-paginate';
 import styled from 'styled-components';
 
 import ReviewList from './ReviewList.jsx';
@@ -18,6 +19,7 @@ const ReviewPage = styled.section `
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  min-width: 700px;
 `
 
 const Recommended = styled.div `
@@ -92,11 +94,6 @@ class App extends React.Component {
         });
     };
 
-
-    // make a clickhandle that recieves a word of search
-    // filters out review contents that contain those words
-    // render only the filtered contents
-
     handleSubmit() {
       let searchedWord = this.state.searchedTerm;
       console.log(searchedWord)
@@ -111,16 +108,6 @@ class App extends React.Component {
         .catch(error => {
           console.log('failed to get searched reviews')
         })
-      // let matchedReviews = [];
-      // for (let i = 0; i < this.state.reviews.length; i++) {
-      //   if (this.state.reviews[i].content.toLowerCase().indexOf(searchedWord.toLowerCase()) > -1) {
-      //     matchedReviews.push(this.state.reviews[i])
-      //   }
-      // }
-      // this.setState({
-      //   searchedReviews: matchedReviews,
-      //   searchedTerm: searchedWord
-      // })
     }
 
     handleChange(event) {
@@ -129,7 +116,6 @@ class App extends React.Component {
 
     handleChangeSort(event) {
       const value = event.target.value;
-
       axios.get(`/reviews/restaurants/2?sort_by=${value}`)
         .then(res => {
           this.setState({
@@ -173,6 +159,8 @@ class App extends React.Component {
         })
         .catch(error => console.log(error))
     }
+
+
 
   render() {
     return (
