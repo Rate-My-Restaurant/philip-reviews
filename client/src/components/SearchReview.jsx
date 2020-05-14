@@ -78,7 +78,7 @@ const SearchReview = (props) => (
   <SearchDiv>
     <SearchSortDiv>
       <SearchbarDiv>
-        <SearchInput type="text" value={props.searchedTerm} onChange={(e) => props.handleChange(e)} placeholder="Search within reviews"/>
+        <SearchInput type="text" value={props.searchingTerm}onChange={(e) => props.handleChange(e)} placeholder="Search within reviews"/>
         <Button type="button" onClick={() => props.handleSubmit()}>
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon_svg">
@@ -100,7 +100,7 @@ const SearchReview = (props) => (
     </SearchSortDiv>
     <span>
       {
-        props.searchedTerm.length > 0 &&
+        props.searchedReviews.length > 0 &&
         <div>
           <SearchResultMssg>
             {props.searchedReviews.length} reviews mentioning "{props.searchedTerm}"

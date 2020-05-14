@@ -4,8 +4,8 @@ CREATE DATABASE yelpreviews;
 
 USE yelpreviews;
 
-DROP TABLE IF EXISTS users;
-CREATE TABLE users (
+DROP TABLE IF EXISTS Users;
+CREATE TABLE Users (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   userName VARCHAR(150) NOT NULL,
   memberStatus VARCHAR(50),
@@ -15,14 +15,14 @@ CREATE TABLE users (
   friendCount INT
 );
 
-DROP TABLE IF EXISTS restaurants;
-CREATE TABLE restaurants (
+DROP TABLE IF EXISTS Restaurants;
+CREATE TABLE Restaurants (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   restaurantName VARCHAR(500)
 );
 
-DROP TABLE IF EXISTS reviews;
-CREATE TABLE reviews (
+DROP TABLE IF EXISTS Reviews;
+CREATE TABLE Reviews (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   restaurantID INT,
   stars INT,
@@ -39,8 +39,8 @@ CREATE TABLE reviews (
   CONSTRAINT fk_reviews_user FOREIGN KEY (userID) REFERENCES users(id)
   );
 
-DROP TABLE IF EXISTS pictures;
-CREATE TABLE pictures (
+DROP TABLE IF EXISTS Pictures;
+CREATE TABLE Pictures (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   picDescript VARCHAR(1000),
   picURL VARCHAR(500),
