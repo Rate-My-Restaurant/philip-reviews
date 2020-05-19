@@ -21,7 +21,6 @@ const SearchbarDiv = styled.div `
   margin-top: 0px;
 `
 const SearchInput = styled.input `
-  height: 48px;
   padding: 13px 15px;
   background-color: #fff;
   border: 1px solid #bbbac0;
