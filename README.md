@@ -1,9 +1,8 @@
 ## Server API
 
 ### Get review info
-  * GET `/api/review/:id`
-
-  <!-- Question: should I restructure path to `/api/:restaurantId/review/:id` -->
+  <!-- * GET `/api/reviews/:id` -->
+  * GET `/api/:restaurantId/reviews/:id`
 
 **Path Parameters:**
   * `id` review id
@@ -15,7 +14,7 @@
 ```json
     {
       "id": "Number",
-      "restaurant_id": "Number",
+      // "restaurant_id": "Number",
       "restaurant_name": "String",
       "username": "String",
       "user_location": "String",
@@ -37,7 +36,8 @@
 
 
 ### Add review
-  * POST `/api/review`
+  <!-- * POST `/api/reviews` -->
+  * POST `/api/:restaurantId/reviews/:id`
 
 **Success Status Code:** `201`
 
@@ -68,7 +68,8 @@
 
 
 ### Update review info
-  * PATCH `/api/review/:id`
+  <!-- * PATCH `/api/reviews/:id` -->
+  * PATCH `/api/:restaurantId/reviews/:id`
 
 **Path Parameters:**
   * `id` review id
@@ -102,7 +103,8 @@
 
 
 ### Delete review
-  * DELETE `/api/review/:id`
+  <!-- * DELETE `/api/reviews/:id` -->
+  * DELETE `/api/:restaurantId/reviews/:id`
 
 **Path Parameters:**
   * `id` review id
