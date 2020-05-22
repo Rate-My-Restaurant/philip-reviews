@@ -13,8 +13,9 @@
     "test:coverage": "jest --coverage --colors --watchAll=false",
     "server-dev": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
-    "start": "live-server",
-    "seeding": "mysql -u student -p < schema.sql"
+    "start": "nodemon server/index.js",
+    "seedpstg": "psql -U philiphamner < ./database/postgres/schema.sql",
+    "psqldbsetup": "psql postgres < database/postgres/schema.sql"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -23,6 +24,7 @@
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.11",
     "mysql": "^2.18.1",
+    "pg": "^8.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-paginate": "^6.3.2",

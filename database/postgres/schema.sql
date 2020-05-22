@@ -1,4 +1,3 @@
-
 DROP DATABASE IF EXISTS ratemyrestaurant;
 
 CREATE DATABASE ratemyrestaurant;
@@ -11,24 +10,24 @@ DROP TABLE IF EXISTS restaurant;
 
 CREATE TABLE guest(
   id SERIAL NOT NULL PRIMARY KEY,
-  username VARCHAR(200) NOT NULL,
-  user_location VARCHAR(200) NOT NULL,
+  username VARCHAR(50) NOT NULL,
+  user_location VARCHAR(100) NOT NULL,
   user_friend_count INTEGER NOT NULL,
   user_review_count INTEGER NOT NULL,
   user_photo_count INTEGER NOT NULL,
   user_profile_picture VARCHAR(200) NOT NULL,
-  elite_user BOOLEAN,
+  elite_user BOOLEAN
 );
 
 CREATE TABLE restaurant(
   id SERIAL NOT NULL PRIMARY KEY,
-  restaurant_name VARCHAR(200) NOT NULL,
+  restaurant_name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE review(
   id SERIAL NOT NULL PRIMARY KEY,
-  review_text VARCHAR(2000) NOT NULL,
-  review_rating INTEGER CHECK (review BETWEEN 0 AND 5),
+  review_text VARCHAR(5000) NOT NULL,
+  review_rating INTEGER,
   review_date DATE NOT NULL,
   useful_count INTEGER,
   funny_count INTEGER,

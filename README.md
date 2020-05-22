@@ -1,11 +1,12 @@
 ## Server API
 
-### Get review info
+### Get guest info
   <!-- * GET `/api/reviews/:id` -->
-  * GET `/api/:restaurantId/reviews/:id`
+  <!-- * GET `/api/:restaurantId/reviews/:id` -->
+  * GET `/api/guest/:id`
 
 **Path Parameters:**
-  * `id` review id
+  * `id` guest id
 
 **Success Status Code:** `200`
 
@@ -14,30 +15,23 @@
 ```json
     {
       "id": "Number",
-      // "restaurant_id": "Number",
-      "restaurant_name": "String",
       "username": "String",
       "user_location": "String",
       "user_friend_count": "Number",
       "user_review_count": "Number",
       "user_photo_count": "Number",
       "user_profile_picture": "String",
-      "elite_user": "Boolean",
-      "review_rating": "Integer",
-      "review_date": "YYYY-MM-MM",
-      "useful_count": "Number",
-      "funny_count": "Number",
-      "cool_count": "Number",
-      "images": "String",
+      "elite_user": "Boolean"
     }
 ```
 
 
 
 
-### Add review
+### Add guest
   <!-- * POST `/api/reviews` -->
-  * POST `/api/:restaurantId/reviews/:id`
+  <!-- * POST `/api/:restaurantId/reviews/:id` -->
+  * POST `/api/guest/:id`
 
 **Success Status Code:** `201`
 
@@ -46,21 +40,13 @@
 ```json
     {
       "id": "Number",
-      "restaurant_id": "Number",
-      "restaurant_name": "String",
       "username": "String",
       "user_location": "String",
       "user_friend_count": "Number",
       "user_review_count": "Number",
       "user_photo_count": "Number",
       "user_profile_picture": "String",
-      "elite_user": "Boolean",
-      "review_rating": "Integer",
-      "review_date": "YYYY-MM-MM",
-      "useful_count": "Number",
-      "funny_count": "Number",
-      "cool_count": "Number",
-      "images": "String"
+      "elite_user": "Boolean"
     }
 ```
 
@@ -69,10 +55,11 @@
 
 ### Update review info
   <!-- * PATCH `/api/reviews/:id` -->
-  * PATCH `/api/:restaurantId/reviews/:id`
+  <!-- * PATCH `/api/:restaurantId/reviews/:id` -->
+  * PATCH `/api/guest/:id`
 
 **Path Parameters:**
-  * `id` review id
+  * `id` guest id
 
 **Success Status Code:** `204`
 
@@ -81,21 +68,13 @@
 ```json
     {
       "id": "Number",
-      "restaurant_id": "Number",
-      "restaurant_name": "String",
       "username": "String",
       "user_location": "String",
       "user_friend_count": "Number",
       "user_review_count": "Number",
       "user_photo_count": "Number",
       "user_profile_picture": "String",
-      "elite_user": "Boolean",
-      "review_rating": "Integer",
-      "review_date": "YYYY-MM-MM",
-      "useful_count": "Number",
-      "funny_count": "Number",
-      "cool_count": "Number",
-      "images": "String"
+      "elite_user": "Boolean"
     }
 ```
 
@@ -104,10 +83,11 @@
 
 ### Delete review
   <!-- * DELETE `/api/reviews/:id` -->
-  * DELETE `/api/:restaurantId/reviews/:id`
+  <!-- * DELETE `/api/:restaurantId/reviews/:id` -->
+  * DELETE `/api/guest/:id`
 
 **Path Parameters:**
-  * `id` review id
+  * `id` guest id
 
 **Success Status Code:** `204`
 

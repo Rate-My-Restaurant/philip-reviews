@@ -3,10 +3,10 @@ var Schema = mongoose.Schema;
 
 var restaurantSchema = new Schema({
   restaurantId: Number,
-  restaurant_name:  String,
+  restaurant_name: String,
   reviews: [
     {
-      username String,
+      user_name String,
       user_location String,
       user_friend_count Number,
       user_review_count Number,
@@ -18,10 +18,11 @@ var restaurantSchema = new Schema({
       useful_count Number,
       funny_count Number,
       cool_count Number,
-      images: [String, String, String, String],
+      images: [String, String, String, String]
      }
   ],
 });
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 
+// circle back on images array!!
