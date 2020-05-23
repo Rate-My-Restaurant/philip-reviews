@@ -1,6 +1,6 @@
 const express = require('express');
 const db = require('../database/postgres/schema.sql');  //postgres db
-// const db = require('../database/index.js');  
+// const db = require('../database/index.js');
 
 const bodyParser = require('body-parser');
 
@@ -11,9 +11,11 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser());
 
-app.get('/guest/:id', (req, res) => {
+app.get('/guest/:id${}', (req, res) => {
 
 })
+
+
 
 
 

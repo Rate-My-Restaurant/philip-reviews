@@ -18,7 +18,7 @@ var restaurantSchema = new Schema({
       useful_count Number,
       funny_count Number,
       cool_count Number,
-      images: [String],  //this seems to check out in the SO answers that I read.
+      images: [String],
       comment {
         comment_text: String,
         commenter_name: String,
@@ -28,5 +28,10 @@ var restaurantSchema = new Schema({
      }
   ],
 });
+
+//could create very specific API routes that pull batches of reviews from given restaurant.
+//routes or server?
+
+//make second schema, READ JORDAN'S ARTICLE, AND STACK OVERFLOW (SEE REMI'S MESSAGES)
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);

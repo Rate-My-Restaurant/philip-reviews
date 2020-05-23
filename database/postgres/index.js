@@ -97,7 +97,7 @@ module.exports = {
         //something weird is going on here, it isn't console.logging the way i'd expect, i.e. logging nothing.
       }
     }
-  },
+  }
 
 
 
