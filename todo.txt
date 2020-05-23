@@ -21,7 +21,7 @@ X  1. Make sure API routes are correct (README only): README.md
 
 4. figure out how to seed the MongoDB with JSON file (mongo)
   maybe drive w mongoose.
-  try csv or JSONtry a couple ways at 1k, see how long they take, and scale up.
+  try csv or JSON try a couple ways at 1k, see how long they take, and scale up.
   this might require writing some functions.
 
   NOTE: you could (instead of mongoose) use a native javascript driver (not an ORM, so faster)
