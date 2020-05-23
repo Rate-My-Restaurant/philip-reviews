@@ -32,8 +32,11 @@ CREATE TABLE review(
   useful_count INTEGER,
   funny_count INTEGER,
   cool_count INTEGER,
-  restaurant_id INTEGER, REFERENCES restaurant(id),
-  guest_id INTEGER REFERENCES guest(id),
+  restaurant_id INTEGER REFERENCES restaurant(id),
+  guest_id INTEGER REFERENCES guest(id)
+);
+
+
   -- images INTEGER ARRAY,
   -- -- comment {
   --   comment_text: VARCHAR(5000),
@@ -41,9 +44,5 @@ CREATE TABLE review(
   --   commerneter_date:
   --   commenter_photo: String
   -- }
-);
 
-
-
--- COPY guest(id,username,user_location,user_friend_count,user_review_count,user_photo_count,user_profile_picture,elite_user)
--- FROM './Documents/Guest_SDC_100/Guest_100.csv' DELIMITER ',' CSV HEADER;
+COPY guest(id,username,user_location,user_friend_count,user_review_count,user_photo_count,user_profile_picture,elite_user) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/Guest_100.csv' DELIMITER ',' CSV HEADER;
