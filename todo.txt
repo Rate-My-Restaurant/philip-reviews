@@ -1,4 +1,4 @@
-1. Make sure API routes are correct (README only): README.md
+X  1. Make sure API routes are correct (README only): README.md
 2. make sure Schema is correct
   a. mongo: database/mongo/schema.js
   b. postgres: database/postgres/schema.sql

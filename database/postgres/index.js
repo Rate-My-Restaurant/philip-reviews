@@ -66,7 +66,7 @@ module.exports = {
   },
   addRestaurant: () => {
     const text = 'INSERT INTO restaurant(id, restaurant_name) VALUES($1, $2)';
-    const values = [ 2, 'Tiger Queens Famous Steaks' ];
+    const values = [ 3, 'Tiger Queens Famous Steaks2' ];
 
     pool.query(text, values, (err, res) => {
       if (err) {
@@ -99,9 +99,9 @@ module.exports = {
     }
   },
 
-  
+
 
 }
 
 // module.exports.getGuestById(3)
-module.exports.getAllRestaurants()
+module.exports.addRestaurant()
