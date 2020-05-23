@@ -13,6 +13,12 @@ const Pool = require('pg').Pool;
 // elite_user BOOLEAN
 
 
+// CREATE TABLE restaurant(
+//   id SERIAL NOT NULL PRIMARY KEY,
+//   restaurant_name VARCHAR(100) NOT NULL
+// );
+
+
 const pool = new Pool (
   {
     user: 'philiphamner',
@@ -54,7 +60,23 @@ module.exports = {
         console.log('guest:', res.rows[0])
       }
     })
-  }
+  },
+  addRestaurant: () => {
+    const text = 'INSERT INTO restaurant(id, restaurant_name) VALUES($1, $2)';
+    const values = [ 1, 'Tiger Kings Famous Steaks' ];
+
+    pool.query(text, values, (err, res) => {
+      if (err) {
+        console.log(err.stack)
+      } else {
+        console.log(`successfully added new restaurant (${values[1]}) to TABLE restaurant`)
+        // res.send('200');
+      }
+    })
+  },
+
+
 }
 
-module.exports.getGuestById(3)
+// module.exports.getGuestById(3)
+module.exports.addRestaurant()
