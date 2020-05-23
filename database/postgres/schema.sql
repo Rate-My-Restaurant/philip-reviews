@@ -32,7 +32,9 @@ CREATE TABLE review(
   useful_count INTEGER,
   funny_count INTEGER,
   cool_count INTEGER,
-  images VARCHAR(200) NOT NULL,  //array
+
+  images TEXT [],
+
   restaurant_id INTEGER, REFERENCES restaurant(id),
   guest_id INTEGER REFERENCES guest(id),
 
