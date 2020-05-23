@@ -1,0 +1,41 @@
+X  1. Make sure API routes are correct (README only): README.md
+2. make sure Schema is correct
+  a. mongo: database/mongo/schema.js
+  b. postgres: database/postgres/schema.sql
+(finish w step 2 by saturday)
+
+3. figure out how to seed the postgres with CSV file
+  a. make a csv w 1k records for postgres (get done by tonight)
+
+  b. research how to put csv into a db
+  c. do it?
+  d. make a csv w 100k records for postgres
+  e. do it
+  f. 1mm
+  g. 10mm (or for how many you need)
+  h. all tables at 1k
+  g. all tables at full value
+  test this an scale it on one table.  But you will have to do it for all tables.
+  (finish by monday)
+
+
+4. figure out how to seed the MongoDB with JSON file (mongo)
+  maybe drive w mongoose.
+  try csv or JSON try a couple ways at 1k, see how long they take, and scale up.
+  this might require writing some functions.
+
+  NOTE: you could (instead of mongoose) use a native javascript driver (not an ORM, so faster)
+
+5. figure out how to query the db and optimize those queries.
+  a. write queries in postgres (DUES TUESDAY)
+     write queiries in mongo
+
+  b. optimize queries (both mongo and postgres)
+    - indexing: organize data so that the data that likely meets criteria is in one place (at the top?)
+    - make environment better (database configuration options)
+    - write better queries
+
+
+6. choose a db and justify it.
+7. finish building all methods
+8. finish building all API route
