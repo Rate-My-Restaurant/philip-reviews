@@ -32,7 +32,14 @@ CREATE TABLE review(
   useful_count INTEGER,
   funny_count INTEGER,
   cool_count INTEGER,
-  images VARCHAR(200) NOT NULL,
-  restaurant_id INTEGER REFERENCES restaurant(id),
-  guest_id INTEGER REFERENCES guest(id)
+  images VARCHAR(200) NOT NULL,  //array
+  restaurant_id INTEGER, REFERENCES restaurant(id),
+  guest_id INTEGER REFERENCES guest(id),
+
+  //can i nest an object in postgres?
+  comment {}
+  comment_text:
+  commenter_name:
+  commerneter_date:
+  //if one field exists, make other fields exist.
 );
