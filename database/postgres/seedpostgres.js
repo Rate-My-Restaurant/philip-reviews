@@ -3,7 +3,7 @@ const fs = require('fs');
 
 //GUESTS
 const writeGuests = fs.createWriteStream('./csvFiles/guestData.csv');
-writeGuests.write('guest_id,username,user_location,user_friend_count,user_photo_count,user_profile_picture,elite_user\n', 'utf8');
+writeGuests.write('guest_id,username,user_location,user_friend_count,user_review_count,user_photo_count,user_profile_picture,elite_user\n', 'utf8');
 
 //RESTAURANTS
 const writeRestaurants = fs.createWriteStream('./csvFiles/restaurantData.csv');
@@ -31,11 +31,12 @@ function writeGuestsToCSV(writer, encoding, callback) {
       const username = faker.internet.userName();
       const location = faker.address.city() + ' ' + faker.address.stateAbbr();
       const user_friend_count = 300;
+      const user_review_count = 150;
       const user_photo_count = 100;
       const user_profile_picture = faker.image.imageUrl();
       const elite_user = true;
 
-      const data = `${guest_id},${username},${location},${user_friend_count},${user_photo_count},${user_profile_picture},${elite_user}\n`;
+      const data = `${guest_id},${username},${location},${user_friend_count},${user_review_count},${user_photo_count},${user_profile_picture},${elite_user}\n`;
 
       if (i === 0) {
         writer.write(data, encoding, callback);
@@ -68,7 +69,7 @@ function writeRestaurantsToCSV(writer, encoding, callback) {
     do {
       i -= 1;
       restaurant_id += 1;
-      const restaurant_name = faker.company.companyName();
+      const restaurant_name = faker.company.companyName().replace(/,/g, "");
 
 
       const data = `${restaurant_id},${restaurant_name}\n`;
@@ -110,16 +111,27 @@ function writeReviewsToCSV(writer, encoding, callback) {
       restaurant_id +=1;
       guest_id += 1;
 
-      const review_text = 'tesetingtesting';
+      const review_text = faker.lorem.paragraph();
       const review_rating = 1;
       const review_date = 'today';
       const useful_count = 100;
       const funny_count = 50;
       const cool_count = 25;
-      const comment_text = null;
-      const commenter_name = null;
-      const comment_date = null;
-      const commenter_photo = null;
+      //the below comment info is if the business owner has not responded to the review.
+      let comment_text = null;
+      let commenter_name = null;
+      let comment_date = null;
+      let commenter_photo = null;
+
+      //make one guest out of 100 feature a resonse from the business owner.
+      if(i === 99){
+        comment_text = faker.lorem.text();
+        commenter_name = faker.name.firstName();
+        comment_date = faker.date.past();
+        commenter_photo = faker.image.imageUrl();
+      }
+
+
 
       const data = `${review_id},${restaurant_id},${guest_id},${review_text},${review_rating},${review_date},${useful_count},${funny_count},${cool_count},${comment_text},${commenter_name},${comment_date},${commenter_photo}\n`;
 
@@ -157,7 +169,7 @@ function writeReviewImagesToCSV(writer, encoding, callback) {
       i -= 1;
       review_id += 1;
       review_image_id += 1;
-      const review_image_url = faker.image.imageUrl();
+      const review_image_url = faker.image.image();
 
       const data = `${review_id},${review_image_id},${review_image_url}\n`;
 
@@ -179,5 +191,5 @@ write()
 }
 writeReviewImagesToCSV(writeReviewImages, 'utf-8', () => {
   writeReviewImages.end();
-  console.log(`YOU HAVE SUCCESSFULLY ADDED 100 RECORDS TO restaurantData.csv`)
+  console.log(`YOU HAVE SUCCESSFULLY ADDED 100 RECORDS TO reviewImagesData.csv`)
 });

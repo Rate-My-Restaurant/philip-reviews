@@ -14,8 +14,8 @@
     "server-dev": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
     "start": "nodemon server/index.js",
-    "seedpstg": "psql -U philiphamner < ./database/postgres/schema.sql",
-    "psqldbsetup": "psql postgres < database/postgres/schema.sql"
+    "psqldbsetup": "psql postgres < database/postgres/schema.sql",
+    "updatecvsfiles": "node database/postgres/seedpostgres.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
