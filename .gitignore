@@ -1,6 +1,7 @@
 node_modules
 client/dist/bundle.js
 coverage
-Guest_100.csv
-restaurant_100.csv
-review_100.csv
+restaurantData.csv
+reviewData.csv
+guestData.csv
+reviewImagesData.csv
