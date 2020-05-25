@@ -15,9 +15,11 @@ const fs = require('fs');
 const writeUsers = fs.createWriteStream('./csvFiles/Guest_100.csv');
 writeUsers.write('guest_id,username,user_location,user_friend_count,user_photo_count,user_profile_picture,elite_user\n', 'utf8');
 
+
 function writeTenMillionUsers(writer, encoding, callback) {
-  let i = 1000000;
+  let i = 100;
   let guest_id = 0;
+
   function write() {
     let ok = true;
     do {
@@ -54,4 +56,5 @@ write()
 // Then invoke the function with a callback telling the write to end.
 writeTenMillionUsers(writeUsers, 'utf-8', () => {
   writeUsers.end();
+  console.log(`YOU HAVE SUCCESSFULLY ADDED 100 RECORDS TO Guest_100.csv`)
 });
