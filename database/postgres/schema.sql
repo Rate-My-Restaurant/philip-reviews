@@ -55,10 +55,10 @@ CREATE TABLE reviewimages(
 
 
 
-COPY guest(guest_id,username,user_location,user_friend_count,user_review_count,user_photo_count,user_profile_picture,elite_user) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/Guest_100.csv' DELIMITER ',' CSV HEADER;
+COPY guest(guest_id,username,user_location,user_friend_count,user_review_count,user_photo_count,user_profile_picture,elite_user) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/Guest_100.csv' DELIMITER ',' CSV HEADER;
 
-COPY restaurant(restaurant_id,restaurant_name) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/restaurant_100.csv' DELIMITER ',' CSV HEADER;
+COPY restaurant(restaurant_id,restaurant_name) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/restaurant_100.csv' DELIMITER ',' CSV HEADER;
 
-COPY review(review,review_text,review_rating,review_date,useful_count,funny_count,cool_count,restaurant_id,guest_id) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/review_100.csv' DELIMITER ',' CSV HEADER;
+COPY review(review,review_text,review_rating,review_date,useful_count,funny_count,cool_count,restaurant_id,guest_id) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/review_100.csv' DELIMITER ',' CSV HEADER;
 
 -- -- COPY REVIEWIMAGES
