@@ -61,7 +61,7 @@ writeGuestsToCSV(writeGuests, 'utf-8', () => {
 
 
 function writeRestaurantsToCSV(writer, encoding, callback) {
-  let i = 100;
+  let i = 10000;
   let restaurant_id = 0;
 
   function write() {
@@ -124,10 +124,10 @@ function writeReviewsToCSV(writer, encoding, callback) {
       let commenter_photo = null;
 
       //make one guest out of 100 feature a resonse from the business owner.
-      if(i === 99){
-        comment_text = faker.lorem.text();
-        commenter_name = faker.name.firstName();
-        comment_date = faker.date.past();
+      if(i === 98){
+        comment_text = faker.lorem.sentence();
+        commenter_name = faker.name.firstName() + ' ' + faker.name.lastName();
+        comment_date = 'today';
         commenter_photo = faker.image.imageUrl();
       }
 

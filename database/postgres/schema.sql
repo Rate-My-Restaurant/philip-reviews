@@ -32,13 +32,13 @@ CREATE TABLE review(
   FOREIGN KEY (guest_id) REFERENCES guest(guest_id),
   review_text VARCHAR(5000) NOT NULL,
   review_rating smallint,
-  review_date DATE NOT NULL,
+  review_date VARCHAR(100),
   useful_count smallint,
   funny_count smallint,
   cool_count smallint,
   comment_text VARCHAR(5000),
   commenter_name VARCHAR(40),
-  comment_date VARCHAR(40),
+  comment_date VARCHAR(100),
   commenter_photo VARCHAR(200)
 );
 
