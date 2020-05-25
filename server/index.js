@@ -11,7 +11,7 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser());
 
-app.get('/guest/:id${}', (req, res) => {
+app.get(`/guest/:id${}`, (req, res) => {
 
 })
 

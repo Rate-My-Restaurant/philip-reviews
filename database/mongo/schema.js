@@ -13,12 +13,16 @@ var restaurantSchema = new Schema({
       user_photo_count Number,
       user_profile_picture String,
       elite_user Boolean,
+
+      review_text String,
       review_rating Number,
       review_date Date,
+      review_images: [String],
+
       useful_count Number,
       funny_count Number,
       cool_count Number,
-      images: [String],
+
       comment {
         comment_text: String,
         commenter_name: String,
