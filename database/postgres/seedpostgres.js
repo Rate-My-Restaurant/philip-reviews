@@ -18,9 +18,9 @@ const writeReviewImages = fs.createWriteStream('./csvFiles/reviewImagesData.csv'
 writeReviewImages.write('review_id,review_image_id,review_image_url\n', 'utf8');
 
 
-
+//eventually want 10mm unique guests, with  10% of that number (1mm posting reviews, averaging 10 per active user, for a total of 10mm unique reviews)
 function writeGuestsToCSV(writer, encoding, callback) {
-  let i = 100;
+  let i = 10000000;
   let guest_id = 0;
 
   function write() {
@@ -56,12 +56,12 @@ write()
 }
 writeGuestsToCSV(writeGuests, 'utf-8', () => {
   writeGuests.end();
-  console.log(`YOU HAVE SUCCESSFULLY ADDED 100 RECORDS TO guestData.csv`)
+  console.log(`YOU HAVE SUCCESSFULLY ADDED 10,000,000 RECORDS (guests) TO guestData.csv`)
 });
 
-
+//400k restaurants, averaging 25 reviews each
 function writeRestaurantsToCSV(writer, encoding, callback) {
-  let i = 10000;
+  let i = 400000;
   let restaurant_id = 0;
 
   function write() {
@@ -92,15 +92,22 @@ write()
 }
 writeRestaurantsToCSV(writeRestaurants, 'utf-8', () => {
   writeRestaurants.end();
-  console.log(`YOU HAVE SUCCESSFULLY ADDED 100 RECORDS TO restaurantData.csv`)
+  console.log(`YOU HAVE SUCCESSFULLY ADDED 400,000 RECORDS (restaurants) TO restaurantData.csv`)
 });
 
-
 function writeReviewsToCSV(writer, encoding, callback) {
-  let i = 100;
+  let i = 10000000; //10 million
   let review_id = 0;
-  let guest_id = 0;
-  let restaurant_id = 0;
+  // let guest_id = 0;
+  // let restaurant_id = 0;
+  // let getRandomNumBetweenOneAndOneMillion = function() {
+  //   return Math.random() * (1000000 - 1) + 2;
+  // }
+
+  // let getRandomNumBetweenOneAnd400000 = function() {
+  //   return Math.random() * (400000 - 1) + 2;
+  // }
+
 
 
   function write() {
@@ -108,15 +115,23 @@ function writeReviewsToCSV(writer, encoding, callback) {
     do {
       i -= 1;
       review_id += 1;
-      restaurant_id +=1;
-      guest_id += 1;
+      // restaurant_id +=1;
+      // guest_id += 1;
+      let restaurant_id = faker.random.number({
+        'min': 1,
+        'max': 400000
+      });
+      let guest_id = faker.random.number({
+        'min': 1,
+        'max': 1000000
+      });
 
       const review_text = faker.lorem.paragraph();
-      const review_rating = 1;
-      const review_date = 'today';
-      const useful_count = 100;
-      const funny_count = 50;
-      const cool_count = 25;
+      const review_rating = faker.random.number(5);
+      const review_date = faker.date.past();
+      const useful_count = faker.random.number(300);
+      const funny_count = faker.random.number(500);
+      const cool_count = faker.random.number(400);
       //the below comment info is if the business owner has not responded to the review.
       let comment_text = null;
       let commenter_name = null;
@@ -124,10 +139,10 @@ function writeReviewsToCSV(writer, encoding, callback) {
       let commenter_photo = null;
 
       //make one guest out of 100 feature a resonse from the business owner.
-      if(i === 98){
-        comment_text = faker.lorem.sentence();
+      if(i % 100 === 0){
+        comment_text = faker.lorem.paragraph();
         commenter_name = faker.name.firstName() + ' ' + faker.name.lastName();
-        comment_date = 'today';
+        comment_date = faker.date.recent();
         commenter_photo = faker.image.imageUrl();
       }
 
@@ -153,7 +168,7 @@ write()
 }
 writeReviewsToCSV(writeReviews, 'utf-8', () => {
   writeReviews.end();
-  console.log(`YOU HAVE SUCCESSFULLY ADDED 100 RECORDS TO reviewData.csv`)
+  console.log(`YOU HAVE SUCCESSFULLY ADDED 10,000,000 RECORDS (reviews) TO reviewData.csv`)
 });
 
 
@@ -187,7 +202,7 @@ function writeReviewImagesToCSV(writer, encoding, callback) {
       writer.once('drain', write);
     }
   }
-write()
+  write()
 }
 writeReviewImagesToCSV(writeReviewImages, 'utf-8', () => {
   writeReviewImages.end();
