@@ -17,23 +17,25 @@ let seedDB = function(){
   let userID = 1;
   let reviewID = 1;
 
-  for (var i = 0; i < 3; i++) {
+  for (var i = 0; i < 2000; i++) {
 
     var allReviewsForRestaurant = [];
 
 
     let numberOfReviews = faker.random.number({
       'min': 1,
-      'max': 3
+      'max': 20
     });
 
 
     for (var j = 0; j < numberOfReviews; j++) {
       allReviewsForRestaurant.push({
+        //All of the info below (description of the review) should change between each review
+
         user_id: userID,
         review_id: reviewID,
+        business_review_id: j + 1,
 
-        //All of this group (description of the user) should remain consistent between reviews
         user_name: faker.internet.userName(),
         user_location: faker.address.city() + ' ' + faker.address.stateAbbr(),
         user_friend_count: faker.random.number({'min': 1,'max': 400}),
@@ -42,7 +44,6 @@ let seedDB = function(){
         user_profile_picture: faker.image.imageUrl(),
         elite_user: true,
 
-        //All of the following info (description of the review) should change between each review
         review_text: faker.lorem.paragraph(),
         review_rating: faker.random.number({'min': 1,'max': 5}),
         review_date: faker.date.past(),
@@ -53,10 +54,10 @@ let seedDB = function(){
         cool_count: faker.random.number({'min': 1,'max': 350}),
 
         comment: {
-          comment_text: 'null',
-          commenter_name: 'null',
-          commenter_date: faker.date.past(),
-          commenter_photo: faker.image.avatar()
+          comment_text: null,
+          commenter_name: null,
+          commenter_date: null,
+          commenter_photo: null
         }
       })
       userID++;
@@ -83,15 +84,15 @@ let seedDB = function(){
         console.log(`${newRestaurant.restaurant_id}: successfully added ${newRestaurant.restaurant_name} to database.`)
       }
     });
-    restaurantID++;
-
   }
+  restaurantID++;
 }
 
 
 
 
 seedDB();
+
 
 
 

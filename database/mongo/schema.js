@@ -7,6 +7,7 @@ var restaurantSchema = new Schema({
   reviews: [
     {
       user_id: Number,
+      business_review_id: Number,
       user_name: String,
       user_location: String,
       user_friend_count: Number,
