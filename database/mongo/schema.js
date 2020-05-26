@@ -6,26 +6,26 @@ var restaurantSchema = new Schema({
   restaurant_name: String,
   reviews: [
     {
-      user_id Number,
-      user_name String,
-      user_location String,
-      user_friend_count Number,
-      user_review_count Number,
-      user_photo_count Number,
-      user_profile_picture String,
-      elite_user Boolean,
+      user_id: Number,
+      user_name: String,
+      user_location: String,
+      user_friend_count: Number,
+      user_review_count: Number,
+      user_photo_count: Number,
+      user_profile_picture: String,
+      elite_user: Boolean,
 
-      review_id Number,
-      review_text String,
-      review_rating Number,
-      review_date Date,
+      review_id: Number,
+      review_text: String,
+      review_rating: Number,
+      review_date: Date,
       review_images: [String],
 
-      useful_count Number,
-      funny_count Number,
-      cool_count Number,
+      useful_count: Number,
+      funny_count: Number,
+      cool_count: Number,
 
-      comment {
+      comment: {
         comment_text: String,
         commenter_name: String,
         commenter_date: Date,
