@@ -2,10 +2,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var restaurantSchema = new Schema({
-  restaurantId: Number,
+  restaurant_id: Number,
   restaurant_name: String,
   reviews: [
     {
+      user_id Number,
       user_name String,
       user_location String,
       user_friend_count Number,
@@ -14,6 +15,7 @@ var restaurantSchema = new Schema({
       user_profile_picture String,
       elite_user Boolean,
 
+      review_id Number,
       review_text String,
       review_rating Number,
       review_date Date,
@@ -39,3 +41,4 @@ var restaurantSchema = new Schema({
 //make second schema, READ JORDAN'S ARTICLE, AND STACK OVERFLOW (SEE REMI'S MESSAGES)
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
+module.exports = Restaurant;

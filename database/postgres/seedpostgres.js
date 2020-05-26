@@ -19,6 +19,7 @@ writeReviewImages.write('review_id,review_image_id,review_image_url\n', 'utf8');
 
 
 //eventually want 10mm unique guests, with  10% of that number (1mm posting reviews, averaging 10 per active user, for a total of 10mm unique reviews)
+//GUESTS
 function writeGuestsToCSV(writer, encoding, callback) {
   let i = 10000000;
   let guest_id = 0;
@@ -41,14 +42,10 @@ function writeGuestsToCSV(writer, encoding, callback) {
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
-// see if we should continue, or wait
-// don't pass the callback, because we're not done yet.
         ok = writer.write(data, encoding);
       }
     } while (i > 0 && ok);
     if (i > 0) {
-// had to stop early!
-// write some more once it drains
       writer.once('drain', write);
     }
   }
@@ -60,6 +57,7 @@ writeGuestsToCSV(writeGuests, 'utf-8', () => {
 });
 
 //400k restaurants, averaging 25 reviews each
+//RESTAURANTS
 function writeRestaurantsToCSV(writer, encoding, callback) {
   let i = 400000;
   let restaurant_id = 0;
@@ -77,14 +75,10 @@ function writeRestaurantsToCSV(writer, encoding, callback) {
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
-// see if we should continue, or wait
-// don't pass the callback, because we're not done yet.
         ok = writer.write(data, encoding);
       }
     } while (i > 0 && ok);
     if (i > 0) {
-// had to stop early!
-// write some more once it drains
       writer.once('drain', write);
     }
   }
@@ -95,28 +89,17 @@ writeRestaurantsToCSV(writeRestaurants, 'utf-8', () => {
   console.log(`YOU HAVE SUCCESSFULLY ADDED 400,000 RECORDS (restaurants) TO restaurantData.csv`)
 });
 
+//REVIEWS
 function writeReviewsToCSV(writer, encoding, callback) {
   let i = 10000000; //10 million
   let review_id = 0;
-  // let guest_id = 0;
-  // let restaurant_id = 0;
-  // let getRandomNumBetweenOneAndOneMillion = function() {
-  //   return Math.random() * (1000000 - 1) + 2;
-  // }
-
-  // let getRandomNumBetweenOneAnd400000 = function() {
-  //   return Math.random() * (400000 - 1) + 2;
-  // }
-
-
 
   function write() {
     let ok = true;
     do {
       i -= 1;
       review_id += 1;
-      // restaurant_id +=1;
-      // guest_id += 1;
+
       let restaurant_id = faker.random.number({
         'min': 1,
         'max': 400000
@@ -138,8 +121,8 @@ function writeReviewsToCSV(writer, encoding, callback) {
       let comment_date = null;
       let commenter_photo = null;
 
-      //make one guest out of 100 feature a resonse from the business owner.
-      if(i % 100 === 0){
+      //make one guest out of 25 feature a resonse from the business owner (i.e. 4% comment response rate from business owner)
+      if(i % 25 === 0){
         comment_text = faker.lorem.paragraph();
         commenter_name = faker.name.firstName() + ' ' + faker.name.lastName();
         comment_date = faker.date.recent();
@@ -153,14 +136,10 @@ function writeReviewsToCSV(writer, encoding, callback) {
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
-// see if we should continue, or wait
-// don't pass the callback, because we're not done yet.
         ok = writer.write(data, encoding);
       }
     } while (i > 0 && ok);
     if (i > 0) {
-// had to stop early!
-// write some more once it drains
       writer.once('drain', write);
     }
   }
@@ -172,18 +151,27 @@ writeReviewsToCSV(writeReviews, 'utf-8', () => {
 });
 
 
-
+// REVIEW IMAGES
 function writeReviewImagesToCSV(writer, encoding, callback) {
-  let i = 100;
-  let review_id = 0;
+  let i = 2500000;
+  let review_id = 1;
   let review_image_id = 0;
+  let batch = 0;
 
   function write() {
     let ok = true;
     do {
       i -= 1;
-      review_id += 1;
       review_image_id += 1;
+      if (batch < 4) {
+        review_id += 0;
+        batch++;
+
+      } else {
+        review_id += 1;
+        batch *= 0;
+      }
+
       const review_image_url = faker.image.image();
 
       const data = `${review_id},${review_image_id},${review_image_url}\n`;
@@ -191,14 +179,10 @@ function writeReviewImagesToCSV(writer, encoding, callback) {
       if (i === 0) {
         writer.write(data, encoding, callback);
       } else {
-// see if we should continue, or wait
-// don't pass the callback, because we're not done yet.
         ok = writer.write(data, encoding);
       }
     } while (i > 0 && ok);
     if (i > 0) {
-// had to stop early!
-// write some more once it drains
       writer.once('drain', write);
     }
   }
