@@ -3,22 +3,6 @@ const Pool = require('pg').Pool;
 //PLEASE NOTE, MOST OF MY METHODS ONLY CONSOLE.LOG THE DATA, THEY ARE NOT RETURNING IT TO THE USER.
 //I MUST MAKE THE SWITCH AT SOME POINT IN THE FUTURE, BUT FOR NOW CONSOLE.LOGGING WORKS.
 
-// id SERIAL NOT NULL PRIMARY KEY,
-// username VARCHAR(50) NOT NULL,
-// user_location VARCHAR(100) NOT NULL,
-// user_friend_count INTEGER NOT NULL,
-// user_review_count INTEGER NOT NULL,
-// user_photo_count INTEGER NOT NULL,
-// user_profile_picture VARCHAR(200) NOT NULL,
-// elite_user BOOLEAN
-
-
-// CREATE TABLE restaurant(
-//   id SERIAL NOT NULL PRIMARY KEY,
-//   restaurant_name VARCHAR(100) NOT NULL
-// );
-
-
 const pool = new Pool (
   {
     user: 'philiphamner',
@@ -97,11 +81,22 @@ module.exports = {
         //something weird is going on here, it isn't console.logging the way i'd expect, i.e. logging nothing.
       }
     }
+  },
+  getReviewsByRestaurantId: (id, callback) => {
+    pool.query(`SELECT * FROM review WHERE restaurant_id = $1`, [4], (error, data) => {
+      if (error) {
+        console.log('ERROR IN DB: ', error);
+        // callback(error);
+      } else {
+        // console.log('guest:', data.rows[0])
+        console.log('success IN THE DATABASE', data);
+        callback(data);
+        // callback(null, data);
+
+      }
+    })
   }
-
-
-
 }
 
-// module.exports.getGuestById(3)
-module.exports.addRestaurant()
+// module.exports.getReviewsByRestaurantId(3)
+// module.exports.addRestaurant()

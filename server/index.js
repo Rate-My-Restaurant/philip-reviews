@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('../database/postgres/schema.sql');  //postgres db
+const db = require('../database/postgres/index.js');  //postgres db
 // const db = require('../database/index.js');
 
 const bodyParser = require('body-parser');
@@ -11,33 +11,53 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser());
 
-app.get(`/guest/:id${}`, (req, res) => {
+// app.get(`/guest/:id${}`, (req, res) => {
 
+// })
+
+
+app.get(`/restaurants/:restaurantId/comments`, (req, res) => {
+  db.getReviewsByRestaurantId(4, (error, data) => {
+    if (error) {
+      console.log(error);
+      res.status(404).send('error GET request on reviews');
+    } else {
+      res.status(200).send('data');
+    }
+  })
 })
 
+app.get(`/restaurants/comments`, (req, res) => {
+  db.getReviewsByRestaurantId(4, (data) => {
+    // if (error) {
+    //   console.log(error);
+    //   res.status(404).send('error GET request on reviews');
+    // } else {
+    //   console.log('success in server');
+    //   res.status(200).send('data');
+    // }
+    if (data){
+      res.send(data)
+    } else {
+      res.send('failure')
+    }
+  })
+      // res.status(200).send('data');
+})
+
+// app.get('/pictures', (req, res) => {
+//   db.allPics((error, data) => {
+//     if (error) {
+//       console.log(error);
+//       res.status(400).send(error);
+//     } else {
+//       console.log(data);
+//       res.status(200).send(data);
+//     }
+//   });
+// });
 
 
-
-
-
-
-
-
-
-
-
-
-//   // MINJI WASN'T USING THIS ONE
-// // app.get('/reviews', (req, res) => {
-// //   db.allReviews((error, data) => {
-// //     if (error) {
-// //       console.log(error);
-// //       res.status(404).send('error GET request on reviews');
-// //     } else {
-// //       res.status(200).send(data);
-// //     }
-// //   });
-// // });
 
 // app.get('/reviews/restaurants/:id', (req, res) => {
 //   console.log(req.query);
@@ -83,17 +103,7 @@ app.get(`/guest/:id${}`, (req, res) => {
 //   )
 
 //   // MINJI WASN'T USING THIS ONE
-// // app.get('/pictures', (req, res) => {
-// //   db.allPics((error, data) => {
-// //     if (error) {
-// //       console.log(error);
-// //       res.status(400).send(error);
-// //     } else {
-// //       console.log(data);
-// //       res.status(200).send(data);
-// //     }
-// //   });
-// // });
+
 
 
 app.listen(port, () => {

@@ -3,7 +3,6 @@ mongoose.connect('mongodb://localhost/ratemyrestaurant', { useNewUrlParser: true
 const Restaurant = require('./schema.js');
 const faker = require('faker');
 
-
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -12,12 +11,14 @@ db.once('open', function() {
 });
 
 
+let documentArr = [];
+
 let seedDB = function(){
   let restaurantID = 1;
   let userID = 1;
   let reviewID = 1;
 
-  for (var i = 0; i < 2000; i++) {
+  for (var i = 0; i < 1000; i++) {
 
     var allReviewsForRestaurant = [];
 
@@ -75,7 +76,11 @@ let seedDB = function(){
       reviews: allReviewsForRestaurant
     })
 
+    restaurantID++;
 
+
+    // documentArr.push(newRestaurant)
+    console.log(restaurantID)
 
     newRestaurant.save(function (err, newRestaurant) {
       if (err){
@@ -85,13 +90,13 @@ let seedDB = function(){
       }
     });
   }
-  restaurantID++;
 }
 
 
 
 
 seedDB();
+// console.log(documentArr.length)
 
 
 
