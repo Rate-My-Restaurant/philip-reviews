@@ -86,17 +86,10 @@ module.exports = {
     pool.query(`SELECT * FROM review WHERE restaurant_id = $1`, [4], (error, data) => {
       if (error) {
         console.log('ERROR IN DB: ', error);
-        // callback(error);
       } else {
-        // console.log('guest:', data.rows[0])
         console.log('success IN THE DATABASE', data);
         callback(data);
-        // callback(null, data);
-
       }
     })
   }
 }
-
-// module.exports.getReviewsByRestaurantId(3)
-// module.exports.addRestaurant()

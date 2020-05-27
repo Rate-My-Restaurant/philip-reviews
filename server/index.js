@@ -29,13 +29,6 @@ app.get(`/restaurants/:restaurantId/comments`, (req, res) => {
 
 app.get(`/restaurants/comments`, (req, res) => {
   db.getReviewsByRestaurantId(4, (data) => {
-    // if (error) {
-    //   console.log(error);
-    //   res.status(404).send('error GET request on reviews');
-    // } else {
-    //   console.log('success in server');
-    //   res.status(200).send('data');
-    // }
     if (data){
       res.send(data)
     } else {
@@ -45,17 +38,6 @@ app.get(`/restaurants/comments`, (req, res) => {
       // res.status(200).send('data');
 })
 
-// app.get('/pictures', (req, res) => {
-//   db.allPics((error, data) => {
-//     if (error) {
-//       console.log(error);
-//       res.status(400).send(error);
-//     } else {
-//       console.log(data);
-//       res.status(200).send(data);
-//     }
-//   });
-// });
 
 
 
