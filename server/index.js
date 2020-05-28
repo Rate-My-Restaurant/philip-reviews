@@ -15,7 +15,7 @@ app.use(bodyParser());
 
 // })
 
-//
+//APPROPRIATE API ROUTE:  http://localhost:8080/restaurants/10/comments
 app.get(`/restaurants/:restaurantId/comments`, (req, res) => {
   db.getReviewsByRestaurantId(req.params.restaurantId, (data) => {
     if (data){
@@ -26,20 +26,26 @@ app.get(`/restaurants/:restaurantId/comments`, (req, res) => {
   })
 })
 
-app.get(`/restaurants/comments`, (req, res) => {
-  db.getReviewsByRestaurantId(4, (data) => {
-    if (data){
-      res.send(data)
-    } else {
-      res.send('failure')
-    }
-  })
-      // res.status(200).send('data');
-})
+//BELOW IS DEPRECIATED.  DOESN'T DYNAMCIALLY RETURN REVIEWS BASED ON RESTAURANT NUMBER (PARAMETER) PASSED IN BY API.  PLEASE USE app.get(`/restaurants/:restaurantId/comments`, ....) ABOVE.
+// app.get(`/restaurants/comments`, (req, res) => {
+//   db.getReviewsByRestaurantId(4, (data) => {
+//     if (data){
+//       res.send(data)
+//     } else {
+//       res.send('failure')
+//     }
+//   })
+//       // res.status(200).send('data');
+// })
 
 
 
 
+
+
+
+
+//BELOW IS ALL MINJI'S WORK
 // app.get('/reviews/restaurants/:id', (req, res) => {
 //   console.log(req.query);
 //   if(req.query.sort_by) {
