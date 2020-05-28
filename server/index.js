@@ -1,6 +1,6 @@
 const express = require('express');
-const db = require('../database/postgres/schema.sql');  //postgres db
-// const db = require('../database/index.js');  
+const db = require('../database/postgres/index.js');  //postgres db
+// const db = require('../database/index.js');
 
 const bodyParser = require('body-parser');
 
@@ -11,10 +11,32 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser());
 
-app.get('/guest/:id', (req, res) => {
+// app.get(`/guest/:id${}`, (req, res) => {
 
+// })
+
+//APPROPRIATE API ROUTE:  http://localhost:8080/restaurants/10/comments
+app.get(`/restaurants/:restaurantId/comments`, (req, res) => {
+  db.getReviewsByRestaurantId(req.params.restaurantId, (data) => {
+    if (data){
+      res.send(data)
+    } else {
+      res.send('failure')
+    }
+  })
 })
 
+//BELOW IS DEPRECIATED.  DOESN'T DYNAMCIALLY RETURN REVIEWS BASED ON RESTAURANT NUMBER (PARAMETER) PASSED IN BY API.  PLEASE USE app.get(`/restaurants/:restaurantId/comments`, ....) ABOVE.
+// app.get(`/restaurants/comments`, (req, res) => {
+//   db.getReviewsByRestaurantId(4, (data) => {
+//     if (data){
+//       res.send(data)
+//     } else {
+//       res.send('failure')
+//     }
+//   })
+//       // res.status(200).send('data');
+// })
 
 
 
@@ -23,20 +45,7 @@ app.get('/guest/:id', (req, res) => {
 
 
 
-
-
-//   // MINJI WASN'T USING THIS ONE
-// // app.get('/reviews', (req, res) => {
-// //   db.allReviews((error, data) => {
-// //     if (error) {
-// //       console.log(error);
-// //       res.status(404).send('error GET request on reviews');
-// //     } else {
-// //       res.status(200).send(data);
-// //     }
-// //   });
-// // });
-
+//BELOW IS ALL MINJI'S WORK
 // app.get('/reviews/restaurants/:id', (req, res) => {
 //   console.log(req.query);
 //   if(req.query.sort_by) {
@@ -81,17 +90,7 @@ app.get('/guest/:id', (req, res) => {
 //   )
 
 //   // MINJI WASN'T USING THIS ONE
-// // app.get('/pictures', (req, res) => {
-// //   db.allPics((error, data) => {
-// //     if (error) {
-// //       console.log(error);
-// //       res.status(400).send(error);
-// //     } else {
-// //       console.log(data);
-// //       res.status(200).send(data);
-// //     }
-// //   });
-// // });
+
 
 
 app.listen(port, () => {
