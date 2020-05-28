@@ -83,7 +83,10 @@ module.exports = {
     }
   },
   getReviewsByRestaurantId: (id, callback) => {
-    pool.query(`SELECT * FROM review WHERE restaurant_id = $1`, [4], (error, data) => {
+    pool.query(`SELECT * FROM review
+                INNER JOIN guest ON guest.guest_id = review.guest_id
+                LEFT JOIN reviewimages ON reviewimages.associated_review_id = review.review_id
+                WHERE restaurant_id = $1`, [id], (error, data) => {
       if (error) {
         console.log('ERROR IN DB: ', error);
       } else {

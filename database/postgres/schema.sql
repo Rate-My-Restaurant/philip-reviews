@@ -45,8 +45,8 @@ CREATE TABLE review(
 
 CREATE TABLE reviewimages(
   review_image_id SERIAL NOT NULL PRIMARY KEY,
-  review_id INTEGER,        //revew_images_id
-  FOREIGN KEY (review_id) REFERENCES review(review_id),
+  associated_review_id INTEGER,
+  FOREIGN KEY (associated_review_id) REFERENCES review(review_id),
   review_image_url VARCHAR(200)
 );
 

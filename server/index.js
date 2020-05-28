@@ -15,14 +15,13 @@ app.use(bodyParser());
 
 // })
 
-
+//
 app.get(`/restaurants/:restaurantId/comments`, (req, res) => {
-  db.getReviewsByRestaurantId(4, (error, data) => {
-    if (error) {
-      console.log(error);
-      res.status(404).send('error GET request on reviews');
+  db.getReviewsByRestaurantId(req.params.restaurantId, (data) => {
+    if (data){
+      res.send(data)
     } else {
-      res.status(200).send('data');
+      res.send('failure')
     }
   })
 })
