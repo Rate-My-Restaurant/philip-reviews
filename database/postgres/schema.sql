@@ -29,7 +29,6 @@ CREATE TABLE review(
   restaurant_id INTEGER,
   guest_id INTEGER,
   FOREIGN KEY (restaurant_id) REFERENCES restaurant(restaurant_id),
-  -- //index on this one
   FOREIGN KEY (guest_id) REFERENCES guest(guest_id),
   review_text VARCHAR(5000) NOT NULL,
   review_rating smallint,
