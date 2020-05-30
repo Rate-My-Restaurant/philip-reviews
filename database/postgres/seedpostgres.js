@@ -21,7 +21,7 @@ writeReviewImages.write('review_id,review_image_id,review_image_url\n', 'utf8');
 //eventually want 10mm unique guests, with  10% of that number (1mm posting reviews, averaging 10 per active user, for a total of 10mm unique reviews)
 //GUESTS
 function writeGuestsToCSV(writer, encoding, callback) {
-  let i = 10000000;
+  let i = 35000000; // 10mm => 35 million
   let guest_id = 0;
 
   function write() {
@@ -53,13 +53,13 @@ write()
 }
 writeGuestsToCSV(writeGuests, 'utf-8', () => {
   writeGuests.end();
-  console.log(`YOU HAVE SUCCESSFULLY ADDED 10,000,000 RECORDS (guests) TO guestData.csv`)
+  console.log(`YOU HAVE SUCCESSFULLY ADDED 35,000,000 RECORDS (guests) TO guestData.csv`)
 });
 
 //400k restaurants, averaging 25 reviews each
 //RESTAURANTS
 function writeRestaurantsToCSV(writer, encoding, callback) {
-  let i = 400000;
+  let i = 1400000 //400k => 1,400,000
   let restaurant_id = 0;
 
   function write() {
@@ -86,27 +86,55 @@ write()
 }
 writeRestaurantsToCSV(writeRestaurants, 'utf-8', () => {
   writeRestaurants.end();
-  console.log(`YOU HAVE SUCCESSFULLY ADDED 400,000 RECORDS (restaurants) TO restaurantData.csv`)
+  console.log(`YOU HAVE SUCCESSFULLY ADDED 1,400,000 RECORDS (restaurants) TO restaurantData.csv`)
 });
+
+
 
 //REVIEWS
 function writeReviewsToCSV(writer, encoding, callback) {
-  let i = 10000000; //10 million
+  let i = 35000000; //10 million => 35 million
+  const reviewFrequencies = [0,1,2,3,10,15,15,15,16,17,18,200];
+
   let review_id = 0;
+  let restaurant_id = 1;   //NEW ITERATION
+  let batch = 0;
+  let fC = 0;
+  let frequencyCounter = reviewFrequencies[fC];
+
 
   function write() {
     let ok = true;
     do {
       i -= 1;
       review_id += 1;
+      // restaurant_id += 1;  //NEW ITERATION
+      // counter += 1;
+      if (fC > 11) {
+        fC *= 0;
+      }
 
-      let restaurant_id = faker.random.number({
-        'min': 1,
-        'max': 400000
-      });
+      if (batch > reviewFrequencies[fC] || batch === reviewFrequencies[fC] ) {
+        fC += 1;
+        restaurant_id += 1;  //NEW ITERATION
+        batch *= 0;
+
+      } else {
+        batch += 1;
+        restaurant_id += 0;
+      }
+
+      //currently selecting random restaurant_id to asscoiate with a review
+
+      // let restaurant_id = faker.random.number({
+      //   'min': 1,
+      //   'max': 1400000 // 400k => 1.4 million
+      //   //reviews array
+      // });
+
       let guest_id = faker.random.number({
         'min': 1,
-        'max': 1000000
+        'max': 3500000  // 1 million => 3.5 million
       });
 
       const review_text = faker.lorem.paragraph();
@@ -147,13 +175,13 @@ write()
 }
 writeReviewsToCSV(writeReviews, 'utf-8', () => {
   writeReviews.end();
-  console.log(`YOU HAVE SUCCESSFULLY ADDED 10,000,000 RECORDS (reviews) TO reviewData.csv`)
+  console.log(`YOU HAVE SUCCESSFULLY ADDED 35,000,000 RECORDS (reviews) TO reviewData.csv`)
 });
 
 
 // REVIEW IMAGES
 function writeReviewImagesToCSV(writer, encoding, callback) {
-  let i = 2500000;
+  let i = 8750000; //2.5 million => 8.75 million
   let review_id = 1;
   let review_image_id = 0;
   let batch = 0;
@@ -190,5 +218,5 @@ function writeReviewImagesToCSV(writer, encoding, callback) {
 }
 writeReviewImagesToCSV(writeReviewImages, 'utf-8', () => {
   writeReviewImages.end();
-  console.log(`YOU HAVE SUCCESSFULLY ADDED 100 RECORDS TO reviewImagesData.csv`)
+  console.log(`YOU HAVE SUCCESSFULLY ADDED 8,750,000 RECORDS TO reviewImagesData.csv`)
 });

@@ -14,6 +14,13 @@ INNER JOIN guest ON guest.guest_id = review.guest_id
 LEFT JOIN reviewimages ON reviewimages.associated_review_id = review.review_id
 WHERE restaurant_id = 15
 
+-- //make query return reivews in order, then try to re-optimiize.
+-- this would slow down write time and speed up read time.  this a good tradeoff for my service
+-- can't make this tradeoff on the server if you don't make this change now on the db.
+-- get iit i the right order on server.  see hwat happens when you scale w/ reads and writes.  Will likley lead to the prioritization of reads over writes.
+
+-- changing the order of the data we get back from the db vs. (node express) is the big question here.
+
 
 -- CREATE
 -- INSERT INTO guest(username,user_location,user_friend_count,user_review_count,user_photo_count,user_profile_picture,elite_user)

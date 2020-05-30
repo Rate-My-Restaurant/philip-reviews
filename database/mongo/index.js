@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/ratemyrestaurant', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://127.0.0.1:27017/ratemyrestaurant', { useNewUrlParser: true, useUnifiedTopology: true });
 const Restaurant = require('./schema.js');
 const faker = require('faker');
 
-
+//127.0.0.1:27017
 // "mongo-seed": "node database/mongo/index.js"
 
 
@@ -22,7 +22,7 @@ let seedDB = function(){
   let userID = 1;
   let reviewID = 1;
 
-  for (var i = 0; i < 3000; i++) {
+  for (var i = 0; i < 100; i++) {
 
     var allReviewsForRestaurant = [];
 
@@ -99,7 +99,7 @@ let seedDB = function(){
 
 
 
-// seedDB();
+seedDB();
 // console.log(documentArr.length)
 
 

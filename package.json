@@ -16,7 +16,7 @@
     "start": "nodemon server/index.js",
     "psql-update-cvsfiles": "node database/postgres/seedpostgres.js",
     "psql-db-setup-and-seed": "psql postgres < database/postgres/schema.sql",
-    "mongo-seed": "node database/mongo/index.js"
+    "mongo-seed": "node database/mongo/seedCSV.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
