@@ -55,20 +55,38 @@ COPY restaurant(restaurant_id,restaurant_name) FROM '/Users/philiphamner/Documen
 
 COPY review(review_id,restaurant_id,guest_id,review_text,review_rating,review_date,useful_count,funny_count,cool_count,comment_text,commenter_name,comment_date,commenter_photo) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/reviewData.csv' DELIMITER ',' CSV HEADER;
 
-COPY reviewimages(review_id,review_image_id,review_image_url) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/reviewImagesData.csv' DELIMITER ',' CSV HEADER;
+COPY reviewimages(associated_review_id,review_image_id,review_image_url) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/reviewImagesData.csv' DELIMITER ',' CSV HEADER;
 
 
 
+-- associated_review_id
+
+-- CREATE INDEX ON reviews (columnName) 
+-- CREATE UNIQUE INDEX title_idx ON films (title); 
+-- CREATE INDEX ON guest (guest_id);   this should be the one im using.
 
 
+SELECT count(*) FROM review
+INNER JOIN guest ON guest.guest_id = review.guest_id
+LEFT JOIN reviewimages ON reviewimages.associated_review_id = review.review_id
+WHERE restaurant_id = 2;
 
-
-
-
-
+INSERT INTO review(review_id,restaurant_id,guest_id,review_text,review_rating,review_date,useful_count,funny_count,cool_count)VALUES(35000001,10,10,'yum super super great food!',5,'May 25,1997',12,1,99)
 
 
 
 
 -- 'review_id,restaurant_id,guest_id,review_text,review_rating,review_date,useful_count,funny_count,cool_count,comment_text,commenter_name,comment_date,commenter_photo\n'
 -- -- COPY REVIEWIMAGES
+
+
+-- SELECT
+--     indexname,
+--     indexdef
+-- FROM
+--     pg_indexes
+-- WHERE
+--     tablename = 'guest';
+
+
+-- DROP INDEX guest_guest_id_idx

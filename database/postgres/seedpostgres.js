@@ -31,9 +31,9 @@ function writeGuestsToCSV(writer, encoding, callback) {
       guest_id += 1;
       const username = faker.internet.userName();
       const location = faker.address.city() + ' ' + faker.address.stateAbbr();
-      const user_friend_count = 300;
-      const user_review_count = 150;
-      const user_photo_count = 100;
+      const user_friend_count = faker.random.number(300);
+      const user_review_count = faker.random.number(150);
+      const user_photo_count = faker.random.number(1200);
       const user_profile_picture = faker.image.imageUrl();
       const elite_user = true;
 
@@ -59,7 +59,7 @@ writeGuestsToCSV(writeGuests, 'utf-8', () => {
 //400k restaurants, averaging 25 reviews each
 //RESTAURANTS
 function writeRestaurantsToCSV(writer, encoding, callback) {
-  let i = 1400000 //400k => 1,400,000
+  let i = 1400000 //400k => 1,400,000, 1,500,000;
   let restaurant_id = 0;
 
   function write() {

@@ -9,10 +9,10 @@
 -- WHERE restaurant_id = 4;
 
 -- READ
-SELECT * FROM review
+SELECT count(*) FROM review
 INNER JOIN guest ON guest.guest_id = review.guest_id
 LEFT JOIN reviewimages ON reviewimages.associated_review_id = review.review_id
-WHERE restaurant_id = 15
+WHERE restaurant_id = 2;
 
 -- //make query return reivews in order, then try to re-optimiize.
 -- this would slow down write time and speed up read time.  this a good tradeoff for my service

@@ -11,15 +11,25 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser());
 
-// app.get(`/guest/:id${}`, (req, res) => {
 
-// })
 
 //APPROPRIATE API ROUTE:  http://localhost:8080/restaurants/10/comments
 app.get(`/restaurants/:restaurantId/comments`, (req, res) => {
   db.getReviewsByRestaurantId(req.params.restaurantId, (data) => {
     if (data){
-      res.send(data)
+      let arrayOfData = data.rows;
+
+      // let sortByDate = function (a, b) {
+      //   return new Date(a.result.date).getTime() - new Date(b.result.date).getTime();
+      // }
+
+      let sortedArrayOfData = arrayOfData.sort(function(a, b) {
+        return b.review_date > a.review_date;
+      }));
+    // your_array.sort(comp);
+
+      // let sorted = data.sort()
+      res.send(sortedArrayOfData)
     } else {
       res.send('failure')
     }
