@@ -25,8 +25,15 @@ app.get(`/restaurants/:restaurantId/comments`, (req, res) => {
       // }
 
       let sortedArrayOfData = arrayOfData.sort(function(a, b) {
-        return b.review_date > a.review_date;
-      }));
+        // return b.review_date > a.review_date;
+
+        var dateA = new Date(a.review_date), dateB = new Date(b.review_date);
+        return dateB - dateA;
+
+      })
+
+
+      // );
     // your_array.sort(comp);
 
       // let sorted = data.sort()
