@@ -1,3 +1,4 @@
+const newrelic = require('newrelic');
 const express = require('express');
 const db = require('../database/postgres/index.js');  //postgres db
 // const db = require('../database/index.js');
