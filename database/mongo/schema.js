@@ -43,3 +43,78 @@ var restaurantSchema = new Schema({
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 module.exports = Restaurant;
+
+
+db.restaurants.insert({
+  restaurant_id: 10000001,
+  restaurant_name: 'philips place',
+  reviews: [
+    {
+      user_id: 10000001,
+      business_review_id: 10000001,
+      user_name: 'philip ahmner',
+      user_location: 'san francsicso',
+      user_friend_count: 4,
+      user_review_count: 5,
+      user_photo_count: 6,
+      user_profile_picture: 'fb.com/myuserphoto',
+      elite_user: true,
+
+      review_id: 10000001,
+      review_text: 'really really yummy :)',
+      review_rating: 1,
+      review_date: '2002-12-09',
+      review_images: ['justonpicture'],
+
+      useful_count: 3,
+      funny_count: 2,
+      cool_count: 1,
+
+      comment: {
+        comment_text: 'Glad you enjoyed it!',
+        commenter_name: 'mr. manager',
+        commenter_date: '2002-12-09',
+        commenter_photo: 'fb/businessownerpicture'
+      }
+     }
+  ]
+})
+
+
+
+
+
+const temp = {
+  restaurant_id: 10000001,
+  restaurant_name: 'philips place',
+  reviews: [
+    {
+      user_id: 10000001,
+      business_review_id: 10000001,
+      user_name: 'philip ahmner',
+      user_location: 'san francsicso',
+      user_friend_count: 4,
+      user_review_count: 5,
+      user_photo_count: 6,
+      user_profile_picture: 'fb.com/myuserphoto',
+      elite_user: true,
+
+      review_id: 10000001,
+      review_text: 'really really yummy :)',
+      review_rating: 1,
+      review_date: '2002-12-09',
+      review_images: ['justonpicture'],
+
+      useful_count: 3,
+      funny_count: 2,
+      cool_count: 1,
+
+      comment: {
+        comment_text: 'Glad you enjoyed it!',
+        commenter_name: 'mr. manager',
+        commenter_date: '2002-12-09',
+        commenter_photo: 'fb/businessownerpicture'
+      }
+     }
+  ]
+}

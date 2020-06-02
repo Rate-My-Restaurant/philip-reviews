@@ -20,23 +20,12 @@ app.get(`/restaurants/:restaurantId/comments`, (req, res) => {
     if (data){
       let arrayOfData = data.rows;
 
-      // let sortByDate = function (a, b) {
-      //   return new Date(a.result.date).getTime() - new Date(b.result.date).getTime();
-      // }
-
       let sortedArrayOfData = arrayOfData.sort(function(a, b) {
-        // return b.review_date > a.review_date;
-
-        var dateA = new Date(a.review_date), dateB = new Date(b.review_date);
+        let dateA = new Date(a.review_date);
+        let dateB = new Date(b.review_date);
         return dateB - dateA;
-
       })
 
-
-      // );
-    // your_array.sort(comp);
-
-      // let sorted = data.sort()
       res.send(sortedArrayOfData)
     } else {
       res.send('failure')

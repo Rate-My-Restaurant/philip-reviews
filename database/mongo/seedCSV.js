@@ -83,3 +83,5 @@ writeDataToCSV(writeData, 'utf-8', () => {
       // const elite_user = true;
 
       // const data = `${guest_id},${username},${location},${user_friend_count},${user_review_count},${user_photo_count},${user_profile_picture},${elite_user}\n`;
+
+      db.collection.insert()
