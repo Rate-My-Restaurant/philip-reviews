@@ -12,8 +12,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors --watchAll=false",
     "server-dev": "nodemon server/index.js",
-    "react-dev": "webpack -d --watch",
-    "start": "nodemon server/index.js",
+    "react-dev": "webpack -d",
+    "start": "node server/index.js",
     "psql-update-cvsfiles": "node database/postgres/seedpostgres.js",
     "psql-db-setup-and-seed": "psql postgres < database/postgres/schema.sql",
     "mongo-seed": "node database/mongo/seedCSV.js"
