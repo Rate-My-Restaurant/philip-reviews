@@ -16,7 +16,7 @@
     "start": "nodemon server/index.js",
     "psql-update-cvsfiles": "node database/postgres/seedpostgres.js",
     "psql-db-setup-and-seed": "psql postgres < database/postgres/schema.sql",
-    "mongo-seed": "node database/mongo/index.js"
+    "mongo-seed": "node database/mongo/seedCSV.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -28,6 +28,7 @@
     "mongodb": "^3.5.7",
     "mongoose": "^5.9.11",
     "mysql": "^2.18.1",
+    "newrelic": "^6.8.0",
     "pg": "^8.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
