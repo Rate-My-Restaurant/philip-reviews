@@ -57,7 +57,7 @@ module.exports = {
         console.log(err.stack)
       } else {
         console.log(`successfully added new restaurant (${values[1]}) to TABLE restaurant`)
-        // res.send('200');
+        // res.send('200')
       }
     })
   },
