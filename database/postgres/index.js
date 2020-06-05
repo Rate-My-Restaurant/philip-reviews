@@ -5,10 +5,22 @@ const Pool = require('pg').Pool;
 
 const pool = new Pool (
   {
-    user: 'philiphamner',
+    user: 'ec2',
     database: 'ratemyrestaurant',
+    host: '52.53.182.119',
+
   }
 )
+
+// pool.connect().then((client)=>{
+//   // client.query('SELECT * FROM restaurant WHERE restaurant_id = 1')
+//   // .then((response)=>{
+//   //   console.log(response)
+//   // })
+//   // console.log(client);
+//   // process.exit()
+
+// })
 
 
 //make sure the below methods accept a callback so we can transfer data back to the user.
@@ -94,5 +106,6 @@ module.exports = {
         callback(data);
       }
     })
-  }
+  },
+  pool,
 }
