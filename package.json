@@ -16,7 +16,8 @@
     "start": "node server/index.js",
     "psql-update-cvsfiles": "node database/postgres/seedpostgres.js",
     "psql-db-setup-and-seed": "psql postgres < database/postgres/schema.sql",
-    "mongo-seed": "node database/mongo/seedCSV.js"
+    "mongo-seed": "node database/mongo/seedCSV.js",
+    "seed-jordan": "node ./seeder/main.js 'database'"
   },
   "dependencies": {
     "axios": "^0.19.2",

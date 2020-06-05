@@ -39,3 +39,10 @@ X 3. figure out how to seed the postgres with CSV file
 6. choose a db and justify it.
 7. finish building all methods
 8. finish building all API route
+
+
+cat reviewDataSplit/reviewData1.csv | tee reviewDataSplit/reviewData3.csv reviewDataSplit/reviewData4.csv reviewDataSplit/reviewData5.csv
+reviewData6.csv reviewData7.csv reviewData8.csv reviewData9.csv reviewData10.csv
+
+
+pv /Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/guestData.csv | psql -U ec2 -d ratemyrestaurant --host 52.53.182.119 --command="COPY guest(guest_id,username,user_location,user_friend_count,user_review_count,user_photo_count,user_profile_picture,elite_user) FROM STDIN DELIMITER ',' CSV HEADER;"
