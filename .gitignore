@@ -1,9 +1,4 @@
 node_modules
 client/dist/bundle.js
 coverage
-restaurantData.csv
-reviewData.csv
-guestData.csv
-reviewImagesData.csv
-restaurants.js
-mongoData.csv
+*.csv
