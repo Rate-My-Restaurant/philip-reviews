@@ -170,7 +170,7 @@
       "useful_count": "Number",
       "funny_count": "Number",
       "cool_count": "Number",
-      "images": "Array",  //CHECK THIS ONE!!!
+      "images": "Array",
       "restaurant_id": "Number",
       "guest_id": "Number",
       "comment": {
@@ -198,7 +198,7 @@
       "useful_count": "Number",
       "funny_count": "Number",
       "cool_count": "Number",
-      "images": "Array",  //CHECK THIS ONE!!!
+      "images": "Array",
       "restaurant_id": "Number",
       "guest_id": "Number",
       "comment": {
@@ -228,7 +228,7 @@
       "useful_count": "Number",
       "funny_count": "Number",
       "cool_count": "Number",
-      "images": "Array",  //CHECK THIS ONE!!!
+      "images": "Array",
       "restaurant_id": "Number",
       "guest_id": "Number",
       "comment": {

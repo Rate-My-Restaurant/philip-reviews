@@ -49,13 +49,13 @@ CREATE TABLE reviewimages(
   review_image_url VARCHAR(200)
 );
 
-COPY guest(guest_id,username,user_location,user_friend_count,user_review_count,user_photo_count,user_profile_picture,elite_user) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/guestData.csv' DELIMITER ',' CSV HEADER;
+-- COPY guest(guest_id,username,user_location,user_friend_count,user_review_count,user_photo_count,user_profile_picture,elite_user) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/guestData.csv' DELIMITER ',' CSV HEADER;
 
-COPY restaurant(restaurant_id,restaurant_name) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/restaurantData.csv' DELIMITER ',' CSV HEADER;
+-- COPY restaurant(restaurant_id,restaurant_name) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/restaurantData.csv' DELIMITER ',' CSV HEADER;
 
-COPY review(review_id,restaurant_id,guest_id,review_text,review_rating,review_date,useful_count,funny_count,cool_count,comment_text,commenter_name,comment_date,commenter_photo) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/reviewData.csv' DELIMITER ',' CSV HEADER;
+-- COPY review(review_id,restaurant_id,guest_id,review_text,review_rating,review_date,useful_count,funny_count,cool_count,comment_text,commenter_name,comment_date,commenter_photo) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/reviewData.csv' DELIMITER ',' CSV HEADER;
 
-COPY reviewimages(associated_review_id,review_image_id,review_image_url) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/reviewImagesData.csv' DELIMITER ',' CSV HEADER;
+-- COPY reviewimages(associated_review_id,review_image_id,review_image_url) FROM '/Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/reviewImagesData.csv' DELIMITER ',' CSV HEADER;
 
 
 ALTER TABLE review

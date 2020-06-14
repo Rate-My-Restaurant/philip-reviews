@@ -45,4 +45,12 @@ cat reviewDataSplit/reviewData1.csv | tee reviewDataSplit/reviewData3.csv review
 reviewData6.csv reviewData7.csv reviewData8.csv reviewData9.csv reviewData10.csv
 
 
-pv /Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/guestData.csv | psql -U ec2 -d ratemyrestaurant --host 52.53.182.119 --command="COPY guest(guest_id,username,user_location,user_friend_count,user_review_count,user_photo_count,user_profile_picture,elite_user) FROM STDIN DELIMITER ',' CSV HEADER;"
+pv /Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/guestData.csv | psql -U ec2 -d ratemyrestaurant --host 54.153.32.97 --command="COPY guest(guest_id,username,user_location,user_friend_count,user_review_count,user_photo_count,user_profile_picture,elite_user) FROM STDIN DELIMITER ',' CSV HEADER;"
+
+pv /Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/reviewData.csv | psql -U ec2 -d ratemyrestaurant --host 54.153.32.97 --command="COPY review(review_id,restaurant_id,guest_id,review_text,review_rating,review_date,useful_count,funny_count,cool_count,comment_text,commenter_name,comment_date,commenter_photo) FROM STDIN DELIMITER ',' CSV HEADER;"
+
+pv /Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/restaurantData.csv | psql -U ec2 -d ratemyrestaurant --host 54.153.32.97 --command="COPY restaurant(restaurant_id,restaurant_name) FROM STDIN DELIMITER ',' CSV HEADER;"
+
+
+
+pv /Users/philiphamner/Documents/HRSF127/SDC-127/yelp_business-reviews/csvFiles/reviewImagesData.csv | psql -U ec2 -d ratemyrestaurant --host 54.153.32.97 --command="COPY reviewimages(associated_review_id,review_image_id,review_image_url) FROM STDIN DELIMITER ',' CSV HEADER;"
